@@ -9,7 +9,11 @@
         android:id="@+id/nav_home"
         android:name="com.example.mobile_computing.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_trips"
+            app:destination="@id/nav_trips" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -18,8 +22,8 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.mobile_computing.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_trips"
+        android:name="com.example.mobile_computing.ui.TripsFragment"
+        tools:layout="@layout/fragment_trips" />
+
 </navigation>

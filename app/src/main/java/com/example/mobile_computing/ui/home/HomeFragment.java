@@ -18,6 +18,9 @@ import android.widget.Toast;
 import com.example.mobile_computing.R;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 
 import com.example.mobile_computing.databinding.FragmentHomeBinding;
@@ -155,6 +158,9 @@ public class HomeFragment extends Fragment {
         //Checks if all fields are filled in first.
         public void setUpSearchButton(View view){
             Button searchFlightsButton = view.findViewById(R.id.search_button);
+
+//            NavController navController = Navigation.findNavController(requireActivity(), R.id.mobile_navigation);
+
             searchFlightsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -168,6 +174,15 @@ public class HomeFragment extends Fragment {
                         return;
                     }
 
+                    Log.d("info to pass to api", "From " +originLocation + " Departure: "+ departureDateString + " Return: "+ returnDateString);
+//                    navController.navigate(R.id.nav_trips);
+                    NavController navController = Navigation.findNavController(view);
+
+                    // Create a new instance of the action
+
+
+                    // Call navigate on the NavController
+                    navController.navigate(R.id.nav_trips);
                             //TODO Navigate to new ui where the api will be called onCreateView
                 }
             }
