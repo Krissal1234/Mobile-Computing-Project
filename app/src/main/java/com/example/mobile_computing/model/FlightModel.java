@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class TripModel {
+public class FlightModel {
     //TODO Plan below:
     /*
     First user GET Search flights everywhere to get the available countries, should already ordered by price
@@ -21,5 +21,15 @@ public class TripModel {
     private String bookingUrl;
     private List<SegmentModel> segments;
 
-
+    public FlightModel(String origin, String destination, Date departureDate, Date arrivalDate, String airline, String flightNumber, double price, String bookingUrl, List<SegmentModel> segments) {
+        this.origin = origin;
+        this.destination = destination;
+        this.departureDate = departureDate;
+        this.arrivalDate = arrivalDate;
+        this.airline = airline;
+        this.flightNumber = flightNumber;
+        this.price = price;
+        this.bookingUrl = bookingUrl;
+        this.segments = segments;
+    }
 }
