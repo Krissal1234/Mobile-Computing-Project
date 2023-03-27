@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "490013025394",
+    "project_id": "mobile-computing-project-96dfa",
+    "storage_bucket": "mobile-computing-project-96dfa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490013025394:android:84db4b6293aa8efd8b4eeb",
+        "android_client_info": {
+          "package_name": "com.example.mobile_computing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490013025394-f6934evh06a0l9kebqfopj9e19dc57gd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAySfnGK3gkLqjpD1mhshmyjrt4V5wnm3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "490013025394-f6934evh06a0l9kebqfopj9e19dc57gd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
