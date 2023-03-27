@@ -29,8 +29,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
+import services.FirebaseService;
+
 public class HomeFragment extends Fragment {
 
+    private FirebaseService firebaseService;
 
     private FragmentHomeBinding binding;
     private EditText departureDate;
@@ -39,16 +42,26 @@ public class HomeFragment extends Fragment {
     private Spinner countrySpinner;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        //initiates the firebase service class.
+        this.firebaseService = new FirebaseService();
+
+        /*
+       Initialisations of the EditText view in the inflated layout using their ID, and sets the input type to TYPE_NULL,
+       which disables the keyboard from appearing when the user taps on the view.
+         */
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         departureDate = view.findViewById(R.id.departure_date);
         departureDate.setInputType(InputType.TYPE_NULL);
         returnDate = view.findViewById(R.id.return_date);
         returnDate.setInputType(InputType.TYPE_NULL);
         countrySpinner = (Spinner) view.findViewById(R.id.origin_location);
+
+
         setUpDepartureDate();
         setUpReturnDate();
         setUpOriginLocation(view);
         setUpSearchButton(view);
+
         return view;
     }
 
@@ -155,13 +168,7 @@ public class HomeFragment extends Fragment {
                         return;
                     }
 
-                    // Make API call with the selected data
-
-                    String apiKey = "YOUR_API_KEY";
-                    String apiUrl = "https://api.flightlookup.com/v1/search/flights?origin=" + originLocation + "&departure_date=" + departureDateString + "&return_date=" + returnDateString + "&apikey=" + apiKey;
-
-                    // perform API call and handle response
-                    // ...
+                            //TODO Navigate to new ui where the api will be called onCreateView
                 }
             }
             );
