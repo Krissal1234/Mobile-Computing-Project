@@ -36,7 +36,7 @@ import services.FirebaseService;
 
 public class HomeFragment extends Fragment {
 
-    private FirebaseService firebaseService;
+
 
     private FragmentHomeBinding binding;
     private EditText departureDate;
@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //initiates the firebase service class.
-        this.firebaseService = new FirebaseService();
+
 
         /*
        Initialisations of the EditText view in the inflated layout using their ID, and sets the input type to TYPE_NULL,
@@ -179,10 +179,12 @@ public class HomeFragment extends Fragment {
                     NavController navController = Navigation.findNavController(view);
 
                     // Create a new instance of the action
+                    Bundle bundle = new Bundle();
+                    bundle.putString("originLocation", originLocation);
+                    bundle.putString("departureDate", departureDateString);
+                    bundle.putString("return_date", returnDateString);
+                    navController.navigate(R.id.nav_trips, bundle);
 
-
-                    // Call navigate on the NavController
-                    navController.navigate(R.id.nav_trips);
                             //TODO Navigate to new ui where the api will be called onCreateView
                 }
             }

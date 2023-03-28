@@ -1,35 +1,45 @@
-package com.example.mobile_computing.ui;
+package com.example.mobile_computing.ui.flightsPage;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.mobile_computing.R;
-import com.example.mobile_computing.model.FlightModel;
-import com.example.mobile_computing.model.SegmentModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import androidx.lifecycle.ViewModelProvider;
 
 import services.FirebaseService;
 
-public class TripsFragment extends Fragment {
+public class FlightsFragment extends Fragment {
+    private FlightViewModel flightViewModel;
+    private String originLocation;
+    private String departureDate;
+    private String returnDate;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Trips");
-        // Inflate the layout for this fragment#
-        FirebaseService service = new FirebaseService();
-//        service.getCheapestTrips();
+        // Inflate the layout for this fragment
+
+
+        if (getArguments() != null) {
+            originLocation = getArguments().getString("originLocation");
+            departureDate = getArguments().getString("departureDate");
+            returnDate = getArguments().getString("returnDate");
+        }
+        Log.d("location", originLocation);
+        flightViewModel = new ViewModelProvider(this).get(FlightViewModel.class);
+//        flightViewModel.getFlightData(originLocation, departureDate, returnDate)
+//                .observe(getViewLifecycleOwner(), flightList -> {
+//                    adapter.setFlights(flightList);
+//                });
+        //TODO find a way to make a recycler view using the test data and making them clickable to expand into a new page.
+
+
         return inflater.inflate(R.layout.fragment_trips, container, false);
     }
-    //TODO searchAirport request can be used to find the IATA code however maybe its better to hard code that
-    //TODO get flights and hotel data
-    //TODO algorithm to find the cheapest combination will be in services
-
 
     /*
     Steps: to get the cheapest hotels

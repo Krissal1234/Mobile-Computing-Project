@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/nav_trips"
-        android:name="com.example.mobile_computing.ui.TripsFragment"
+        android:name="com.example.mobile_computing.ui.flightsPage.FlightsFragment"
         tools:layout="@layout/fragment_trips" />
 
 </navigation>
