@@ -15,41 +15,50 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import services.FirebaseService;
+
 public class TripsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Trips");
         // Inflate the layout for this fragment#
-        getFlights();
-
+        FirebaseService service = new FirebaseService();
+//        service.getCheapestTrips();
         return inflater.inflate(R.layout.fragment_trips, container, false);
     }
     //TODO searchAirport request can be used to find the IATA code however maybe its better to hard code that
     //TODO get flights and hotel data
+    //TODO algorithm to find the cheapest combination will be in services
 
 
-    public List<FlightModel> getFlights(){
-        // Create a list of segments
-        List<SegmentModel> segments = new ArrayList<>();
-        segments.add(new SegmentModel("ABC", "DEF", new Date(1655347200000L), new Date(1655350800000L), "Airline1", "1234"));
-        segments.add(new SegmentModel("DEF", "GHI", new Date(1655400000000L), new Date(1655403600000L), "Airline2", "5678"));
+    /*
+    Steps: to get the cheapest hotels
+    -   first use /search place (param: location), to get hotels in this location. the entity id of each
+        hotel will be returned.
+
+    -   Then /search hotel (param: entityId, checkIn, checkOut) to get the hotel data for that particular hotel
+        this will probably be done on every hotel returned from the first step
+
+    -   Like this we will receive a list of hotels in the area of choice during the duration requested.
+
+    -   This list can then be sorted by price.
+
+    -   Finally we will have a list of the cheapest hotels available in the location requested during the duration inputted
 
 
-        List<SegmentModel> segments1 = new ArrayList<>();
-        segments1.add(new SegmentModel("JFK", "LHR", new Date(1655347200000L), new Date(1655350800000L), "Layover City 1", "120"));
-        segments1.add(new SegmentModel("LHR", "CDG", new Date(1655400000000L), new Date(1655403600000L), "Layover City 2", "90"));
+    Steps to get the cheapest flights
+
+    -   First use /search flights everywhere to get a list of countries sorted by price that is
+        available given the dates and origin location inputted
+
+    -   Second we use /search flight to get the flight details to get to the country inputted in the given time frame (departure and return dates)
+
+    -
 
 
-        List<SegmentModel> segments2 = new ArrayList<>();
-        segments2.add(new SegmentModel("LAX", "HKG", new Date(1655347200000L), new Date(1655350800000L), "Layover City 1", "240"));
-        segments2.add(new SegmentModel("HKG", "BKK", new Date(1655400000000L), new Date(1655403600000L), "Layover City 2", "180"));
+        - I think the best approach would be to search flights everywhere first,
+        then if the user clicks on the country, it will show the cheapest hotels in that area only. This data can then be cached
+     */
 
 
-        List<FlightModel> flights = new ArrayList<>();
-
-        flights.add(new FlightModel("XYZ", "GHI", new Date(1655270400000L), new Date(1655443200000L), "Airline3", "56789", 500.00, "https://bookingurl.com/flight", segments));
-        flights.add(new FlightModel("JFK", "CDG", new Date(1655270400000L), new Date(1655443200000L), "Airline1", "12345", 800.00, "https://bookingurl1.com/flight", segments1));
-        flights.add(new FlightModel("LAX", "BKK", new Date(1655270400000L), new Date(1655443200000L), "Airline2", "67890", 1000.00, "https://bookingurl2.com/flight", segments2));
-        return  flights;
-    }
 }
