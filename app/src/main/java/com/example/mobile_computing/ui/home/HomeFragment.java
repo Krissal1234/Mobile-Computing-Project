@@ -25,29 +25,26 @@ import androidx.navigation.Navigation;
 
 import com.example.mobile_computing.databinding.FragmentHomeBinding;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import services.FirebaseService;
 
 public class HomeFragment extends Fragment {
-
-
-
     private FragmentHomeBinding binding;
     private EditText departureDate;
     private EditText returnDate;
     private boolean isDepartureDate = false;
     private Spinner countrySpinner;
-
+    private NavController navController;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //initiates the firebase service class.
-
-
         /*
        Initialisations of the EditText view in the inflated layout using their ID, and sets the input type to TYPE_NULL,
        which disables the keyboard from appearing when the user taps on the view.
@@ -68,8 +65,12 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    //Sets up Departure Date DatePicker.
-    //Calender blocks out all days prior to current date (no past flights)
+
+    /**
+     Sets up the departure date EditText view with a click listener to open a DatePickerDialog,
+     which allows the user to select a date. The selected date is displayed in the EditText view.
+     Also sets the minimum date selectable as today's date.
+     */
     public void setUpDepartureDate() {
         final Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
@@ -96,9 +97,13 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    //Sets up the return date DatePicker.
-    //User must input departure date before return date
-    //Calender blocks out all days prior to the departure date inputted.
+    /**
+     Sets up the return date picker dialog. The return date is selected by the user and displayed
+     in the corresponding EditText view. The minimum date that can be selected is set to one day
+     after the departure date that has been previously selected by the user. The return date is not
+     editable by the user before the departure date has been set.
+     before the
+     */
     public void setUpReturnDate() {
         final Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
@@ -123,15 +128,24 @@ public class HomeFragment extends Fragment {
 
                     // set minimum date for DatePicker
                     String[] departureDateSplit = departureDate.getText().toString().split("/");
-                    minimumDate.set(Integer.parseInt(departureDateSplit[2]), Integer.parseInt(departureDateSplit[1]) - 1, Integer.parseInt(departureDateSplit[0]) + 1);
+                    minimumDate.set(Integer.parseInt(departureDateSplit[2]),
+                    Integer.parseInt(departureDateSplit[1]) - 1,
+                    Integer.parseInt(departureDateSplit[0]) + 1);
                     datePicker.getDatePicker().setMinDate(minimumDate.getTimeInMillis());
                     datePicker.show();
                 } else {
-                    Toast.makeText(getActivity(), "Please enter your departure date first.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),
+                    "Please enter your departure date first.",
+                    Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
+    /**
+     Sets up the origin location spinner with a list of countries obtained from the device's locales.
+     The countries are sorted alphabetically and added to the spinner using an ArrayAdapter.
+     @param view The View object representing the layout in which the spinner is located.
+     */
         public void setUpOriginLocation(View view){
             List<String> countryList;
             countryList = new ArrayList<>();
@@ -154,12 +168,17 @@ public class HomeFragment extends Fragment {
             countrySpinner.setAdapter(adapter);
 
         }
-        //Sets up "Find my Trip" button.
-        //Checks if all fields are filled in first.
+    /**
+     Sets up the search flights button and defines its onClickListener. When the button is clicked,
+     it retrieves the data inputted
+     If any of the fields are empty, it displays a message to the user prompting the user to fill
+     in all fields.
+     Otherwise, it formats the departure and return dates to work with the api.
+     Finally, it navigates to the FlightsFragment and passes the data provided as arguments.
+     @param view The view of the HomeFragment.
+     */
         public void setUpSearchButton(View view){
             Button searchFlightsButton = view.findViewById(R.id.search_button);
-
-//            NavController navController = Navigation.findNavController(requireActivity(), R.id.mobile_navigation);
 
             searchFlightsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -173,24 +192,46 @@ public class HomeFragment extends Fragment {
                         Toast.makeText(getActivity(), "Please fill in all fields.", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    departureDateString = formatDates(departureDateString);
+                    returnDateString = formatDates(returnDateString);
 
-                    Log.d("info to pass to api", "From " +originLocation + " Departure: "+ departureDateString + " Return: "+ returnDateString);
-//                    navController.navigate(R.id.nav_trips);
-                    NavController navController = Navigation.findNavController(view);
+                    Log.d("info", "From " +originLocation + " Departure: "+ departureDateString + " Return: "+ returnDateString);
+
+                    navController = Navigation.findNavController(view);
 
                     // Create a new instance of the action
                     Bundle bundle = new Bundle();
                     bundle.putString("originLocation", originLocation);
                     bundle.putString("departureDate", departureDateString);
                     bundle.putString("return_date", returnDateString);
-                    navController.navigate(R.id.nav_trips, bundle);
-
-                            //TODO Navigate to new ui where the api will be called onCreateView
+                    navController.navigate(R.id.nav_flights, bundle);
                 }
             }
             );
 
         }
+    /**
+     This method converts the date string from the "dd/MM/yyyy" format to the "yyyy-MM-dd" format.
+     In order to match the parameters required by the API.
+     @param date the date string in "dd/MM/yyyy" format
+     @return the formatted date string in "yyyy-MM-dd" format
+     */
+    private String formatDates(String date) {
+       String newDate = " ";
+        DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        try{
+            Date oldDate = inputFormat.parse(date);
+            
+            newDate = outputFormat.format(oldDate);
+
+        }catch (Exception e){
+            Log.d("error", e.toString());
+        }
+        return newDate;
+
+    }
+
 
     @Override
     public void onDestroyView() {

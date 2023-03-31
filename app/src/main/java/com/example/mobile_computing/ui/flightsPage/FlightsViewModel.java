@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel;
 import com.example.mobile_computing.model.FlightDescriptionModel;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import services.FirebaseService;
@@ -22,7 +21,7 @@ public class FlightsViewModel extends ViewModel {
 
     private CompletableFuture<Void> fetchFlightsAsync(String originLocation, String departureDate, String  returnDate) {
         FirebaseService service = new FirebaseService();
-        return CompletableFuture.supplyAsync(() -> service.getFlightsEverywhere(originLocation, departureDate, returnDate))
+        return CompletableFuture.supplyAsync(() -> service.getTestFlightsEverywhere(originLocation, departureDate, returnDate))
                 .thenAccept(flightList -> {
                     flightData.clear();
                     flightData.addAll(flightList);

@@ -1,4 +1,4 @@
-package com.example.mobile_computing.ui.gallery;
+package com.example.mobile_computing.ui.favourites;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,20 +13,20 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mobile_computing.databinding.FragmentGalleryBinding;
 
-public class GalleryFragment extends Fragment {
+public class FavouritesFragment extends Fragment {
 
     private FragmentGalleryBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        FavouritesViewModel favouritesViewModel =
+                new ViewModelProvider(this).get(FavouritesViewModel.class);
 
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        favouritesViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
