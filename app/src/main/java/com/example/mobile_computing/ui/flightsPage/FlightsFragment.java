@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.example.mobile_computing.R;
 import com.example.mobile_computing.model.FlightDescriptionModel;
 
@@ -19,11 +21,12 @@ import java.util.List;
 
 import services.FirebaseService;
 
-public class FlightsFragment extends Fragment {
+public class FlightsFragment extends Fragment implements FlightsSelectListener {
     private FlightsViewModel flightViewModel;
     private String originLocation;
     private String departureDate;
     private String returnDate;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Trips");
@@ -43,12 +46,21 @@ public class FlightsFragment extends Fragment {
 
         flightViewModel.getFlightData(originLocation, departureDate, returnDate).thenAccept(flightList -> {
 
-            FlightsRecyclerViewAdapter adapter = new FlightsRecyclerViewAdapter(getContext(),flightList);
+            FlightsRecyclerViewAdapter adapter = new FlightsRecyclerViewAdapter(getContext(),flightList,this);
+
             recyclerView.setAdapter(adapter);
+            recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
 
         });
         return view;
+    }
+
+    @Override
+    public void onItemClicked(FlightDescriptionModel model) {
+        //Direct user to flight_details page
+        Toast.makeText(getContext(),model.getCountry(),Toast.LENGTH_SHORT).show();
     }
 
 
