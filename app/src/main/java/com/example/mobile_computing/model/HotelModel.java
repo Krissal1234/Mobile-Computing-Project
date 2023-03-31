@@ -5,7 +5,7 @@ import java.util.List;
 public class HotelModel {
 
     private String location;
-    private double price;
+    private String price;
     private String entityId;
     private String rating;
     private String longitudeLoc;
@@ -19,7 +19,7 @@ public class HotelModel {
         return location;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -55,7 +55,7 @@ public class HotelModel {
         return images;
     }
 
-    public HotelModel(String location, double price, String entityId, String rating, String longitudeLoc, String latitudeLoc, String hotelName, String checkIn, String checkOut, List<String> images) {
+    public HotelModel(String location, String price, String entityId, String rating, String longitudeLoc, String latitudeLoc, String hotelName, String checkIn, String checkOut, List<String> images) {
         this.location = location;
         this.price = price;
         this.entityId = entityId;

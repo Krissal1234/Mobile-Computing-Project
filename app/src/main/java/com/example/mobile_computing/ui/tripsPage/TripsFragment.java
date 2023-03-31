@@ -1,13 +1,11 @@
 package com.example.mobile_computing.ui.tripsPage;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.mobile_computing.R;
-import com.example.mobile_computing.model.FlightModel;
+
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +36,7 @@ public class TripsFragment extends Fragment {
         }
 
         tripsViewModel.getFlightDetails(originLocation, departureDate, returnDate,destination).thenAccept(flightDetails -> {
-
+            String arrivalTime = flightDetails.getArrivalDate();
 
         });
 

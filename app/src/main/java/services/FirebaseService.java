@@ -39,8 +39,8 @@ public class FirebaseService {
 
         List<LegsModel> legs = new ArrayList<>();
 
-        LegsModel leg1 = new LegsModel("LHR", "XMU", "2023-05-01T10:00:00", "2023-05-01T13:30:00", "7h 30m", "BA1234");
-        LegsModel leg2 = new LegsModel("XMU", "LHR", "2023-05-10T15:00:00", "2023-05-11T06:30:00", "8h 30m", "BA5678");
+        LegsModel leg1 = new LegsModel("LHR", "XMU", "2023-05-01T10:00:00", "2023-05-01T17:30:00", "7h 30m", "BA1234");
+        LegsModel leg2 = new LegsModel("XMU", "LHR", "2023-05-10T15:00:00", "2023-05-11T23:30:00", "8h 30m", "BA5678");
 
         legs.add(leg1);
         legs.add(leg2);
@@ -65,7 +65,7 @@ public class FirebaseService {
 
     public List<HotelModel> getTestHotels(String location, String checkIn, String checkOut ){
         List<HotelModel> hotels = null;
-        double price = 175.50;
+        String price = "175.50";
         String entityId = "123456";
         String rating = "4.5";
         String longitudeLoc = "2.3522";
@@ -74,10 +74,10 @@ public class FirebaseService {
 
         List<String> images = Arrays.asList("https://example.com/image1.jpg", "https://example.com/image2.jpg");
 
-        hotels.add(new HotelModel("Paris, France", price, entityId, rating, longitudeLoc, latitudeLoc, hotelName, "2023-04-01T15:00:00", "2023-04-05T11:00:00", images));
-        hotels.add(new HotelModel("Paris, France", 135.50, "12345", "4.3", "2.3522", "48.8566", "Hotel de Paris", "2023-04-10T14:00:00", "2023-04-15T12:00:00", List.of("https://www.example.com/hotel_image1.jpg", "https://www.example.com/hotel_image2.jpg")));
-        hotels.add(new HotelModel("Nice, France", 95.00, "67890", "3.9", "7.2674", "43.7102", "Hotel du Soleil", "2023-04-01T12:00:00", "2023-05-05T10:00:00", List.of("https://www.example.com/hotel_image1.jpg", "https://www.example.com/hotel_image2.jpg")));
-        hotels.add(new HotelModel("Lyon, France", 125.00, "23456", "4.1", "4.8357", "45.7640", "Hotel du Parc", "2023-04-20T15:00:00", "2023-07-23T11:00:00", List.of("https://www.example.com/hotel_image1.jpg", "https://www.example.com/hotel_image2.jpg")));
+        hotels.add(new HotelModel("Paris, France", "price", entityId, rating, longitudeLoc, latitudeLoc, hotelName, "2023-04-01T15:00:00", "2023-04-05T11:00:00", images));
+        hotels.add(new HotelModel("Paris, France", "135.50", "12345", "4.3", "2.3522", "48.8566", "Hotel de Paris", "2023-04-10T14:00:00", "2023-04-15T12:00:00", List.of("https://www.example.com/hotel_image1.jpg", "https://www.example.com/hotel_image2.jpg")));
+        hotels.add(new HotelModel("Nice, France", "95.00", "67890", "3.9", "7.2674", "43.7102", "Hotel du Soleil", "2023-04-01T12:00:00", "2023-05-05T10:00:00", List.of("https://www.example.com/hotel_image1.jpg", "https://www.example.com/hotel_image2.jpg")));
+        hotels.add(new HotelModel("Lyon, France", "125.00", "23456", "4.1", "4.8357", "45.7640", "Hotel du Parc", "2023-04-20T15:00:00", "2023-07-23T11:00:00", List.of("https://www.example.com/hotel_image1.jpg", "https://www.example.com/hotel_image2.jpg")));
 
         return hotels;
     }
