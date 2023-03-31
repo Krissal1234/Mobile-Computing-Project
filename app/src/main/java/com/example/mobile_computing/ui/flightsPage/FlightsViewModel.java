@@ -1,4 +1,5 @@
 package com.example.mobile_computing.ui.flightsPage;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.mobile_computing.model.FlightDescriptionModel;
@@ -9,24 +10,22 @@ import java.util.concurrent.CompletableFuture;
 
 import services.FirebaseService;
 
-class FlightViewModel extends ViewModel {
-    private List<FlightDescriptionModel> flightData = new ArrayList<>();
+public class FlightsViewModel extends ViewModel {
+    private ArrayList<FlightDescriptionModel> flightData = new ArrayList<>();
 
-    public List<FlightDescriptionModel> getFlightData(String originLocation, String departureDate, String  returnDate) {
-        fetchFlightsAsync(originLocation, departureDate, returnDate);
-        return flightData;
+
+    public CompletableFuture<ArrayList<FlightDescriptionModel>> getFlightData(String originLocation, String departureDate, String  returnDate) {
+        CompletableFuture<ArrayList<FlightDescriptionModel>> future = new CompletableFuture<>();
+        fetchFlightsAsync(originLocation, departureDate, returnDate).thenRun(() -> future.complete(flightData));
+        return future;
     }
 
-    private void fetchFlightsAsync(String originLocation, String departureDate, String  returnDate) {
+    private CompletableFuture<Void> fetchFlightsAsync(String originLocation, String departureDate, String  returnDate) {
         FirebaseService service = new FirebaseService();
-        //Calls the method asynchronously
-        CompletableFuture.supplyAsync(() -> {
-            List<FlightDescriptionModel> flightList;
-            flightList = service.getFlightsEverywhere(originLocation, departureDate, returnDate);
-            return flightList;
-        }).thenAccept(flightList -> {
-            flightData.clear();
-            flightData.addAll(flightList);
-        });
+        return CompletableFuture.supplyAsync(() -> service.getFlightsEverywhere(originLocation, departureDate, returnDate))
+                .thenAccept(flightList -> {
+                    flightData.clear();
+                    flightData.addAll(flightList);
+                });
     }
 }

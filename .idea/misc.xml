@@ -17,9 +17,13 @@
         <entry key="..\:/Users/Kris Saliba/AndroidStudioProjects/MobileComputing/app/src/main/res/layout/nav_header_main.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/Kris Saliba/AndroidStudioProjects/MobileComputing/app/src/main/res/menu/activity_main_drawer.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/Kris Saliba/AndroidStudioProjects/MobileComputing/app/src/main/res/menu/main.xml" value="0.2740740740740741" />
+        <entry key="..\:/Users/Kris Saliba/AppData/Local/GitHubDesktop/GITHUB-Desktop/Mobile-Computing-Project/app/src/main/res/drawable/ic_baseline_euro_symbol_24.xml" value="0.2205" />
+        <entry key="..\:/Users/Kris Saliba/AppData/Local/GitHubDesktop/GITHUB-Desktop/Mobile-Computing-Project/app/src/main/res/drawable/ic_baseline_flight_24.xml" value="0.316" />
         <entry key="..\:/Users/Kris Saliba/AppData/Local/GitHubDesktop/GITHUB-Desktop/Mobile-Computing-Project/app/src/main/res/layout/flight_item.xml" value="0.22" />
         <entry key="..\:/Users/Kris Saliba/AppData/Local/GitHubDesktop/GITHUB-Desktop/Mobile-Computing-Project/app/src/main/res/layout/fragment_gallery.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/Kris Saliba/AppData/Local/GitHubDesktop/GITHUB-Desktop/Mobile-Computing-Project/app/src/main/res/layout/fragment_home.xml" value="0.2375" />
         <entry key="..\:/Users/Kris Saliba/AppData/Local/GitHubDesktop/GITHUB-Desktop/Mobile-Computing-Project/app/src/main/res/layout/fragment_trips.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/Kris Saliba/AppData/Local/GitHubDesktop/GITHUB-Desktop/Mobile-Computing-Project/app/src/main/res/layout/recycler_view_row.xml" value="0.22" />
       </map>
     </option>
   </component>

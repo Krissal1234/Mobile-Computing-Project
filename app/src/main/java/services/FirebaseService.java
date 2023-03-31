@@ -45,10 +45,10 @@ public class FirebaseService {
 
     public List<FlightDescriptionModel> getFlightsEverywhere(String originLocation, String departureDate, String returnDate){
         List<FlightDescriptionModel> cheapestFlights = new ArrayList<>();
-        cheapestFlights.add(new FlightDescriptionModel("France", 12, "https://example.com/france.jpg"));
-        cheapestFlights.add(new FlightDescriptionModel("Italy", 14, "https://content.skyscnr.com/f348d79cfdf70286dc759d24618a23c3/GettyImages-182281845.jpg?crop=400px:400px&quality=75"));
-        cheapestFlights.add(new FlightDescriptionModel("Spain", 15, "https://example.com/spain.jpg"));
-        cheapestFlights.add(new FlightDescriptionModel("Japan", 17, "https://example.com/japan.jpg"));
+        cheapestFlights.add(new FlightDescriptionModel("France", "12", "https://content.skyscnr.com/c88da2b091534f7baf8536b3959ce83a/GettyImages-495057957.jpg?crop=400px:400px&quality=75"));
+        cheapestFlights.add(new FlightDescriptionModel("Italy", "14", "https://content.skyscnr.com/f348d79cfdf70286dc759d24618a23c3/GettyImages-182281845.jpg?crop=400px:400px&quality=75"));
+        cheapestFlights.add(new FlightDescriptionModel("Spain", "15", "https://content.skyscnr.com/e0241c97c2b33b71e9c278bc89bb17ed/GettyImages-178640523.jpg?crop=400px:400px&quality=75"));
+        cheapestFlights.add(new FlightDescriptionModel("Japan", "17", "https://example.com/japan.jpg"));
 
             return cheapestFlights;
 

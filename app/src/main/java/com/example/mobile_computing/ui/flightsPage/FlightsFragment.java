@@ -6,40 +6,51 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.mobile_computing.R;
+import com.example.mobile_computing.model.FlightDescriptionModel;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 import services.FirebaseService;
 
 public class FlightsFragment extends Fragment {
-    private FlightViewModel flightViewModel;
+    private FlightsViewModel flightViewModel;
     private String originLocation;
     private String departureDate;
     private String returnDate;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Trips");
-        // Inflate the layout for this fragment
 
+
+        View view = inflater.inflate(R.layout.fragment_trips, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.flightsRecyclerView);
+        flightViewModel = new ViewModelProvider(this).get(FlightsViewModel.class);
 
         if (getArguments() != null) {
             originLocation = getArguments().getString("originLocation");
             departureDate = getArguments().getString("departureDate");
             returnDate = getArguments().getString("returnDate");
         }
-        Log.d("location", originLocation);
-        flightViewModel = new ViewModelProvider(this).get(FlightViewModel.class);
-//        flightViewModel.getFlightData(originLocation, departureDate, returnDate)
-//                .observe(getViewLifecycleOwner(), flightList -> {
-//                    adapter.setFlights(flightList);
-//                });
-        //TODO find a way to make a recycler view using the test data and making them clickable to expand into a new page.
 
 
-        return inflater.inflate(R.layout.fragment_trips, container, false);
+
+        flightViewModel.getFlightData(originLocation, departureDate, returnDate).thenAccept(flightList -> {
+
+            FlightsRecyclerViewAdapter adapter = new FlightsRecyclerViewAdapter(getContext(),flightList);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        });
+        return view;
     }
+
 
     /*
     Steps: to get the cheapest hotels
