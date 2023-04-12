@@ -24,6 +24,9 @@ public class FlightsViewModel extends ViewModel {
         return CompletableFuture.supplyAsync(() -> service.getTestFlightsEverywhere(originLocation, departureDate, returnDate))
                 .thenAccept(flightList -> {
                     flightData.clear();
+
+                    //Convert
+
                     flightData.addAll(flightList);
                 });
     }

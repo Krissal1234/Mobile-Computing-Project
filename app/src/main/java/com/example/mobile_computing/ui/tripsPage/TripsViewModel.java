@@ -41,7 +41,7 @@ public class TripsViewModel {
      */
     private CompletableFuture<Void> fetchFlightDetailsAsync(String originLocation, String departureDate, String  returnDate, String destination) {
         FirebaseService service = new FirebaseService();
-        return CompletableFuture.supplyAsync(() -> service.getTestFlights(originLocation, departureDate, returnDate, destination))
+        return CompletableFuture.supplyAsync(() -> service.getTestCheapestFlight(originLocation, departureDate, returnDate, destination))
                 .thenAccept(flight -> {
                     flightDetails = flight;
                 });

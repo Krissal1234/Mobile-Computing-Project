@@ -44,11 +44,18 @@ public class HomeFragment extends Fragment {
     private boolean isDepartureDate = false;
     private Spinner countrySpinner;
     private NavController navController;
+
+    /**
+     * Inflates the layout. Initialisations of the EditText views and spinners in the inflated
+     * layout using their ID, and sets the input type to TYPE_NULL,
+     * which disables the keyboard from appearing when the user taps on the view.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view
+     */
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        /*
-       Initialisations of the EditText view in the inflated layout using their ID, and sets the input type to TYPE_NULL,
-       which disables the keyboard from appearing when the user taps on the view.
-         */
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         departureDate = view.findViewById(R.id.departure_date);
         departureDate.setInputType(InputType.TYPE_NULL);
@@ -232,7 +239,9 @@ public class HomeFragment extends Fragment {
 
     }
 
-
+    /**
+     * Destroys the view on call.
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

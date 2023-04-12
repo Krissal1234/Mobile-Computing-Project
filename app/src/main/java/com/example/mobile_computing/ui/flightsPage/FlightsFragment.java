@@ -1,6 +1,9 @@
 package com.example.mobile_computing.ui.flightsPage;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class FlightsFragment extends Fragment implements FlightsSelectListener {
     private FlightsViewModel flightViewModel;
     private String originLocation;
@@ -26,7 +31,7 @@ public class FlightsFragment extends Fragment implements FlightsSelectListener {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Trips");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Flights");
 
 
         View view = inflater.inflate(R.layout.fragment_flights, container, false);
@@ -38,20 +43,38 @@ public class FlightsFragment extends Fragment implements FlightsSelectListener {
             departureDate = getArguments().getString("departureDate");
             returnDate = getArguments().getString("returnDate");
         }
-
-        flightViewModel.getFlightData(originLocation, departureDate, returnDate).thenAccept(flightList -> {
-
-            FlightsRecyclerViewAdapter adapter = new FlightsRecyclerViewAdapter(getContext(),flightList,this);
-            recyclerView.setAdapter(adapter);
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            if(checkCache(originLocation,departureDate,returnDate)){
 
 
-        });
+            }else {
 
+                flightViewModel.getFlightData(originLocation, departureDate, returnDate).thenAccept(flightList -> {
+                    FlightsRecyclerViewAdapter adapter = new FlightsRecyclerViewAdapter(getContext(), flightList, this);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+                });
+            }
         navController = NavHostFragment.findNavController(this);
         return view;
     }
+
+    private boolean checkCache(String origin, String departureDate, String returnDate) {
+        String cacheKey = origin + departureDate + returnDate;
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("api_cache", Context.MODE_PRIVATE);
+        String cache = sharedPreferences.getString(cacheKey, null);
+
+        if(cache == null){
+            return false;
+        }else{
+          return true;
+        }
+
+    }
+
     //OnClick method when a Card is clicked
     @Override
     public void onItemClicked(FlightDescriptionModel model) {
@@ -63,7 +86,7 @@ public class FlightsFragment extends Fragment implements FlightsSelectListener {
         bundle.putString("destination", model.getCountry());
         bundle.putString("imageUrl", model.getImageUrl());
         bundle.putString("price", model.getPrice());
-
+        Log.d("navigation","Navigating to trips");
         navController.navigate(R.id.action_nav_flights_to_nav_trips,bundle);
 
     }
