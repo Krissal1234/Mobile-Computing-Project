@@ -31,6 +31,7 @@ public class TripsFragment extends Fragment {
     private TextView returnIataCodeDeparture;
     private TextView departureTimeDeparture;
     private TextView returnTimeDeparture;
+    private TextView departureDateText;
 
     private TextView arrivalLocationReturn;
     private TextView originLocationReturn;
@@ -39,6 +40,7 @@ public class TripsFragment extends Fragment {
     private TextView returnIataCodeReturn;
     private TextView departureTimeReturn;
     private TextView returnTimeReturn;
+    private TextView returnDateText;
 
     /**
      *
@@ -66,8 +68,24 @@ public class TripsFragment extends Fragment {
         }
 
         tripsViewModel.getFlightDetails(originLocation, departureDate, returnDate,destination).thenAccept(flightDetails -> {
+            //Departure Initialisations
             originLocationDeparture.setText(flightDetails.getOrigin());
-            Log.d("test","Test");
+            arrivalLocationDeparture.setText(flightDetails.getDestination());
+            totalDurationDeparture.setText(flightDetails.getTotalDuration());
+            departureDateText.setText(flightDetails.getDepartureDate());
+            departureTimeDeparture.setText(flightDetails.getLegs().get(0).getDepartureTime());
+            returnTimeDeparture.setText(flightDetails.getLegs().get(0).getArrivalTime());
+
+
+            //Return Initialisations
+            originLocationReturn.setText(flightDetails.getDestination());
+            arrivalLocationReturn.setText(flightDetails.getOrigin());
+
+            //get from legs
+//            returnDateText.setText(flightDetails.);
+
+
+
 
         });
 
@@ -83,6 +101,7 @@ public class TripsFragment extends Fragment {
         returnIataCodeDeparture = view.findViewById(R.id.returnIata_departure);
         departureTimeDeparture = view.findViewById(R.id.departureTime_departure);
         returnTimeDeparture = view.findViewById(R.id.arrivalTime_departures);
+        departureDateText = view.findViewById(R.id.departure_date_text);
 
         arrivalLocationReturn = view.findViewById(R.id.arrivalLocation_return);
         originLocationReturn = view.findViewById(R.id.originLocation_return);
@@ -91,6 +110,8 @@ public class TripsFragment extends Fragment {
         returnIataCodeReturn = view.findViewById(R.id.returnIata_return);
         departureTimeReturn = view.findViewById(R.id.departureTime_return);
         returnTimeReturn = view.findViewById(R.id.arrivalTime_return);
+        returnDateText = view.findViewById(R.id.return_date_text);
+
     }
 
 

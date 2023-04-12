@@ -9,6 +9,28 @@
     tools:layout_editor_absoluteX="4dp"
     tools:layout_editor_absoluteY="-61dp">
 
+    <!--comment out the entire frameLayout when changes to the normal layout is required-->
+    <FrameLayout
+        android:id="@+id/animation_container"
+        android:layout_width="409dp"
+        android:layout_height="266dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.001">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/plane" />
+
+    </FrameLayout>
+
     <TextView
         android:id="@+id/departure_date_text"
         android:layout_width="wrap_content"
@@ -34,18 +56,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.551" />
-
-    <ImageView
-        android:id="@+id/flightImage"
-        android:layout_width="391dp"
-        android:layout_height="248dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:src="@tools:sample/backgrounds/scenic" />
 
     <include
         android:id="@+id/includeDepartureRow"
@@ -106,17 +116,20 @@
         android:id="@+id/divider"
         android:layout_width="409dp"
         android:layout_height="1dp"
+        android:layout_marginTop="35dp"
         android:layout_marginBottom="220dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/includeReturnRow" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="321dp"
         android:layout_height="83dp"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="706dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="701dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
