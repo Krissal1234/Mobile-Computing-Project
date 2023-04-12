@@ -1,5 +1,6 @@
 package com.example.mobile_computing.ui.flightsPage;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,7 +40,7 @@ class FlightsRecyclerViewAdapter extends RecyclerView.Adapter<FlightsRecyclerVie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FlightsRecyclerViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FlightsRecyclerViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
     //assigning values to the views created
         holder.tvCountry.setText(flights.get(position).getCountry());
         holder.tvPrice.setText(flights.get(position).getPrice());
