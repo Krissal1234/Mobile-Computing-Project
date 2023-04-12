@@ -76,21 +76,21 @@ public class TripsFragment extends Fragment {
     }
 
     private void instantiateTextViews(View view) {
-        arrivalLocationDeparture = view.findViewById(R.id.arrivalLocation_departure);
-        originLocationDeparture = view.findViewById(R.id.originLocation_departure);
-        totalDurationDeparture = view.findViewById(R.id.totalDuration_departure);
-        departureIataCodeDeparture = view.findViewById(R.id.departureIataCode_departure);
-        returnIataCodeDeparture = view.findViewById(R.id.returnIata_departure);
-        departureTimeDeparture = view.findViewById(R.id.departureTime_departure);
-        returnTimeDeparture = view.findViewById(R.id.arrivalTime_departures);
-
-        arrivalLocationReturn = view.findViewById(R.id.arrivalLocation_return);
-        originLocationReturn = view.findViewById(R.id.originLocation_return);
-        totalDurationReturn = view.findViewById(R.id.totalDuration_return);
-        departureIataCodeReturn = view.findViewById(R.id.departure_Iata_return);
-        returnIataCodeReturn = view.findViewById(R.id.returnIata_return);
-        departureTimeReturn = view.findViewById(R.id.departureTime_return);
-        returnTimeReturn = view.findViewById(R.id.arrivalTime_return);
+//        arrivalLocationDeparture = view.findViewById(R.id.arrivalLocation_departure);
+//        originLocationDeparture = view.findViewById(R.id.originLocation_departure);
+//        totalDurationDeparture = view.findViewById(R.id.totalDuration_departure);
+//        departureIataCodeDeparture = view.findViewById(R.id.departureIataCode_departure);
+//        returnIataCodeDeparture = view.findViewById(R.id.returnIata_departure);
+//        departureTimeDeparture = view.findViewById(R.id.departureTime_departure);
+//        returnTimeDeparture = view.findViewById(R.id.arrivalTime_departures);
+//
+//        arrivalLocationReturn = view.findViewById(R.id.arrivalLocation_return);
+//        originLocationReturn = view.findViewById(R.id.originLocation_return);
+//        totalDurationReturn = view.findViewById(R.id.totalDuration_return);
+//        departureIataCodeReturn = view.findViewById(R.id.departure_Iata_return);
+//        returnIataCodeReturn = view.findViewById(R.id.returnIata_return);
+//        departureTimeReturn = view.findViewById(R.id.departureTime_return);
+//        returnTimeReturn = view.findViewById(R.id.arrivalTime_return);
     }
 
 
