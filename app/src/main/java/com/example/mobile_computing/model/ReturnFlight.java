@@ -1,13 +1,10 @@
 package com.example.mobile_computing.model;
 
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-import java.util.List;
-
-public class FlightModel implements Parcelable {
-
+public class ReturnFlight implements Parcelable  {
     private String origin;
     private String destination;
     private String departureDate;
@@ -17,12 +14,10 @@ public class FlightModel implements Parcelable {
     private String flightDuration;
     private String airline;
     private String flightNumber;
-    private String price;
+    private int price;
     private String imageUrl;
-    private ReturnFlight returnFlight;
 
-
-    public FlightModel(String origin, String destination, String departureDate, String departureTime, String arrivalDate, String arrivalTime, String flightDuration, String airline, String flightNumber, String price, String imageUrl, ReturnFlight returnFlight) {
+    public ReturnFlight(String origin, String destination, String departureDate, String departureTime, String arrivalDate, String arrivalTime, String flightDuration, String airline, String flightNumber, int price, String imageUrl) {
         this.origin = origin;
         this.destination = destination;
         this.departureDate = departureDate;
@@ -34,10 +29,20 @@ public class FlightModel implements Parcelable {
         this.flightNumber = flightNumber;
         this.price = price;
         this.imageUrl = imageUrl;
-        this.returnFlight = returnFlight;
     }
+    public static final Parcelable.Creator<ReturnFlight> CREATOR = new Parcelable.Creator<ReturnFlight>() {
+        @Override
+        public ReturnFlight createFromParcel(Parcel in) {
+            return new ReturnFlight(in);
+        }
 
-    protected FlightModel(Parcel in) {
+        @Override
+        public ReturnFlight[] newArray(int size) {
+            return new ReturnFlight[size];
+        }
+    };
+
+    protected ReturnFlight(Parcel in) {
         origin = in.readString();
         destination = in.readString();
         departureDate = in.readString();
@@ -47,22 +52,10 @@ public class FlightModel implements Parcelable {
         flightDuration = in.readString();
         airline = in.readString();
         flightNumber = in.readString();
-        price = in.readString();
+        price = in.readInt();
         imageUrl = in.readString();
-        returnFlight = in.readParcelable(ReturnFlight.class.getClassLoader());
     }
 
-    public static final Creator<FlightModel> CREATOR = new Creator<FlightModel>() {
-        @Override
-        public FlightModel createFromParcel(Parcel in) {
-            return new FlightModel(in);
-        }
-
-        @Override
-        public FlightModel[] newArray(int size) {
-            return new FlightModel[size];
-        }
-    };
 
     public String getOrigin() {
         return origin;
@@ -100,16 +93,12 @@ public class FlightModel implements Parcelable {
         return flightNumber;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
     public String getImageUrl() {
         return imageUrl;
-    }
-
-    public ReturnFlight getReturnFlight() {
-        return returnFlight;
     }
 
     @Override
@@ -128,11 +117,8 @@ public class FlightModel implements Parcelable {
         dest.writeString(flightDuration);
         dest.writeString(airline);
         dest.writeString(flightNumber);
-        dest.writeString(price);
+        dest.writeInt(price);
         dest.writeString(imageUrl);
-        dest.writeParcelable(returnFlight, flags);
     }
+
 }
-
-
-

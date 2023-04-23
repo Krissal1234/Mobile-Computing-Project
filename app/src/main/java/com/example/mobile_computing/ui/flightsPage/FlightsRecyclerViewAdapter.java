@@ -15,17 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mobile_computing.R;
-import com.example.mobile_computing.model.FlightDescriptionModel;
+import com.example.mobile_computing.model.FlightModel;
 
 import java.util.ArrayList;
 
 class FlightsRecyclerViewAdapter extends RecyclerView.Adapter<FlightsRecyclerViewAdapter.MyViewHolder> {
     Context context;
-    ArrayList<FlightDescriptionModel> flights;
+    ArrayList<FlightModel> flights;
     private FlightsSelectListener listener;
 
 
-    public FlightsRecyclerViewAdapter(Context context, ArrayList<FlightDescriptionModel> flights, FlightsSelectListener listener){
+    public FlightsRecyclerViewAdapter(Context context, ArrayList<FlightModel> flights, FlightsSelectListener listener){
         this.context = context;
         this.flights = flights;
         this.listener = listener;
@@ -42,7 +42,7 @@ class FlightsRecyclerViewAdapter extends RecyclerView.Adapter<FlightsRecyclerVie
     @Override
     public void onBindViewHolder(@NonNull FlightsRecyclerViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
     //assigning values to the views created
-        holder.tvCountry.setText(flights.get(position).getCountry());
+        holder.tvCountry.setText(flights.get(position).getDestination());
         holder.tvPrice.setText(flights.get(position).getPrice());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

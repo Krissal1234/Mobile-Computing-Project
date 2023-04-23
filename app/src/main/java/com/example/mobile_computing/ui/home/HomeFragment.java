@@ -19,7 +19,6 @@ import com.example.mobile_computing.R;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 
@@ -34,8 +33,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import services.FirebaseService;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
