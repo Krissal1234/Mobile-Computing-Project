@@ -18,27 +18,11 @@ import androidx.fragment.app.Fragment;
 import java.util.Locale;
 
 public class TripsFragment extends Fragment {
-    private String originLocation;
-    private String departureDate;
-    private String departureTime;
-    private String returnDate;
-    private String price;
-    private String destination;
-    private String imageUrl;
-    private String airline;
-    private String flightNumber;
-    private String totalDuration;
-    private ReturnFlight returnFlight;
 
     private FlightModel flight;
-//    private TripsViewModel tripsViewModel;
-
-
     private TextView arrivalLocationDeparture;
     private TextView originLocationDeparture;
     private TextView totalDurationDeparture;
-    private TextView departureIataCodeDeparture;
-    private TextView returnIataCodeDeparture;
     private TextView departureTimeDeparture;
     private TextView returnTimeDeparture;
     private TextView departureDateText;
@@ -48,8 +32,6 @@ public class TripsFragment extends Fragment {
     private TextView arrivalLocationReturn;
     private TextView originLocationReturn;
     private TextView totalDurationReturn;
-    private TextView departureIataCodeReturn;
-    private TextView returnIataCodeReturn;
     private TextView departureTimeReturn;
     private TextView arrivalTimeReturn;
     private TextView returnDateText;
@@ -69,25 +51,16 @@ public class TripsFragment extends Fragment {
 
 
         View view = inflater.inflate(R.layout.fragment_trips, container, false);
-//            tripsViewModel = new TripsViewModel();
             instantiateTextViews(view);
 
         if (getArguments() != null) {
 
             flight = getArguments().getParcelable("flightModel");
 
-//            originLocation = getArguments().getString("originLocation");
-//            departureDate = getArguments().getString("departureDate");
-//            returnDate = getArguments().getString("returnDate");
-//            price = getArguments().getString("price");
-//            totalDuration = getArguments().getString("totalDuration");
-//            flightNumber = getArguments().getString("flightNumber");
-//            destination = getArguments().getString("destination");
-//            imageUrl = getArguments().getString("imageUrl");
         }
 
-//        tripsViewModel.getFlightDetails(originLocation, departureDate, returnDate,destination).thenAccept(flightDetails -> {
-//            //Departure Initialisations
+
+            //Departure Initialisations
             originLocationDeparture.setText(flight.getOrigin());
             arrivalLocationDeparture.setText(flight.getDestination());
             totalDurationDeparture.setText(flight.getFlightDuration());
@@ -95,7 +68,6 @@ public class TripsFragment extends Fragment {
             departureTimeDeparture.setText(flight.getDepartureTime());
             returnTimeDeparture.setText(flight.getArrivalTime());
             departureFlightNumber.setText(flight.getFlightNumber());
-            returnFlight = flight.getReturnFlight();
             //Return Initialisations
             originLocationReturn.setText(flight.getReturnFlight().getOrigin());
             arrivalLocationReturn.setText(flight.getReturnFlight().getDestination());

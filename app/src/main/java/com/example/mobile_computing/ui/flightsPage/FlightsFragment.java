@@ -1,5 +1,6 @@
 package com.example.mobile_computing.ui.flightsPage;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,8 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.mobile_computing.R;
 //import com.example.mobile_computing.model.FlightDescriptionModel;
 import com.example.mobile_computing.model.FlightModel;
@@ -39,9 +44,28 @@ public class FlightsFragment extends Fragment implements FlightsSelectListener {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Flights");
 
 
+
+
         View view = inflater.inflate(R.layout.fragment_flights, container, false);
+        ProgressBar loadingProgressBar = view.findViewById(R.id.loadingProgressBar);
+        LottieAnimationView animationView = view.findViewById(R.id.animation_view);
+        TextView noFlightsText = view.findViewById(R.id.no_flights_text);
+        Button backButton = view.findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.nav_home);
+            }
+        });
+
+        loadingProgressBar.setVisibility(View.VISIBLE);
+        animationView.setVisibility(View.GONE);
+        noFlightsText.setVisibility(View.GONE);
+        backButton.setVisibility(View.GONE);
+
         RecyclerView recyclerView = view.findViewById(R.id.flightsRecyclerView);
-//        flightViewModel = new ViewModelProvider(this).get(FlightsViewModel.class);
+
 
         if (getArguments() != null) {
             originLocation = getArguments().getString("originLocation");
@@ -57,14 +81,26 @@ public class FlightsFragment extends Fragment implements FlightsSelectListener {
                     @Override
                     public void onChanged(List<FlightModel> flightModels) {
                         Log.i("flights",flightModels.toString());
-                        FlightsRecyclerViewAdapter adapter = new FlightsRecyclerViewAdapter(getContext(), (ArrayList<FlightModel>) flightModels, FlightsFragment.this);
-                        recyclerView.setAdapter(adapter);
-                        recyclerView.setHasFixedSize(true);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                        if(!flightModels.isEmpty()){
+                            FlightsRecyclerViewAdapter adapter = new FlightsRecyclerViewAdapter(getContext(), (ArrayList<FlightModel>) flightModels, FlightsFragment.this);
+                            recyclerView.setAdapter(adapter);
+                            recyclerView.setHasFixedSize(true);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                            loadingProgressBar.setVisibility(View.GONE);
+//                            emptyTextView.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                        }else{
+                            loadingProgressBar.setVisibility(View.GONE);
+                            animationView.setVisibility(View.VISIBLE);
+                            noFlightsText.setVisibility(View.VISIBLE);
+                            backButton.setVisibility(View.VISIBLE);
+
+                        }
+
                     }
                 });
 
-//
+
             }
         navController = NavHostFragment.findNavController(this);
         return view;

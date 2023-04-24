@@ -170,6 +170,8 @@ public class HomeFragment extends Fragment {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, countryList);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             countrySpinner.setAdapter(adapter);
+            int position = adapter.getPosition("Malta");
+            countrySpinner.setSelection(position);
 
         }
     /**
