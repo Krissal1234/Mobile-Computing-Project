@@ -7,9 +7,9 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface Api {
+public interface FlightApi {
     String BASE_URL = "http://192.168.1.138:3000/";
     @GET("flights")
-    Call<List<FlightModel>> getFlights(@Query("origin") String origin, @Query("departureDate") String departureDate);
+    Call<List<FlightModel>> getFlights(@Query("origin") String origin, @Query("departureDate") String departureDate,@Query("returnDate") String returnDate);
 }
 

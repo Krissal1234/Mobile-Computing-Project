@@ -15,25 +15,25 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 public class FlightsRestRepository {
     private static FlightsRestRepository instance = null;
-    private Api api;
+    private FlightApi api;
 
     private FlightsRestRepository() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(Api.BASE_URL)
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(FlightApi.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        api = retrofit.create(Api.class);
+        api = retrofit.create(FlightApi.class);
     }
 
     public static synchronized FlightsRestRepository getInstance() {
         if (instance == null) {
-            instance = new FlightsRestRepository();
+            instance = new com.example.mobile_computing.ui.flightsPage.FlightsRestRepository();
         }
         return instance;
     }
 
-    public LiveData<List<FlightModel>> fetchFlights(String origin, String departureDate) {
+    public LiveData<List<FlightModel>> fetchFlights(String origin, String departureDate, String returnDate) {
         final MutableLiveData<List<FlightModel>> flights = new MutableLiveData<>();
-        api.getFlights(origin,departureDate).enqueue(new Callback<List<FlightModel>>() {
+        api.getFlights(origin,departureDate,returnDate).enqueue(new Callback<List<FlightModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<FlightModel>> call, @NonNull
                     Response<List<FlightModel>> response) {
