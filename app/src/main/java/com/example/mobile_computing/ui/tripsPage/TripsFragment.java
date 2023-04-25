@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.mobile_computing.R;
 import com.example.mobile_computing.backend.DbHelper;
 import com.example.mobile_computing.model.FlightModel;
@@ -31,6 +32,7 @@ import com.google.gson.Gson;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -53,8 +55,9 @@ public class TripsFragment extends Fragment {
     private TextView hotelPrice;
     private TextView hotelAddress;
     private boolean isFavoriteSelected = false;
-    ImageView favouriteButton;
+    private ImageView favouriteButton;
     HotelModel hotel;
+    private CardView hotelCard;
     private String hotelJson;
     private String flightJson;
     private TextView arrivalLocationReturn;
@@ -66,6 +69,8 @@ public class TripsFragment extends Fragment {
     private TextView returnFlightNumber;
     private DbHelper dbHelper;
     private boolean isNavigatingFromFavorites;
+    private LottieAnimationView animationView;
+    private TextView hotelText;
     /**
      *
      * @param inflater
@@ -80,6 +85,7 @@ public class TripsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_trips, container, false);
         isNavigatingFromFavorites = getActivity().getIntent().getBooleanExtra("isNavigatingFromFavorites", false);
+
 
         Gson gson = new Gson();
         if (getArguments() != null) {
@@ -156,6 +162,9 @@ public class TripsFragment extends Fragment {
 //                    recyclerView.setVisibility(View.VISIBLE);
                     }else{
                         Log.i("hotel","hotels not found");
+                        hotelCard.setVisibility(View.GONE);
+                        animationView.setVisibility(View.VISIBLE);
+                        hotelText.setVisibility(View.VISIBLE);
 //                    loadingProgressBar.setVisibility(View.GONE);
 //                    animationView.setVisibility(View.VISIBLE);
 //                    noFlightsText.setVisibility(View.VISIBLE);
@@ -221,10 +230,14 @@ public class TripsFragment extends Fragment {
         returnDateText = view.findViewById(R.id.return_date_text);
         returnFlightNumber = view.findViewById(R.id.return_flight_number);
 
+
         hotelPrice = view.findViewById(R.id.hotel_price);
         hotelName = view.findViewById(R.id.hotel_name);
         hotelAddress= view.findViewById(R.id.address_text);
         favouriteButton = view.findViewById(R.id.favorite_button);
+        hotelCard = view.findViewById(R.id.hotelRow_main_container);
+        animationView = view.findViewById(R.id.home_anim);
+        hotelText = view.findViewById(R.id.no_hotels);
         //Departure Initialisations
         originLocationDeparture.setText(flight.getOrigin());
         arrivalLocationDeparture.setText(flight.getDestination());
@@ -241,7 +254,8 @@ public class TripsFragment extends Fragment {
         departureTimeReturn.setText(flight.getReturnFlight().getDepartureTime());
         returnDateText.setText(flight.getReturnFlight().getArrivalDate());
         totalDurationReturn.setText(flight.getReturnFlight().getFlightDuration());
-
+        hotelText.setVisibility(View.GONE);
+        animationView.setVisibility(View.GONE);
     }
 
 
