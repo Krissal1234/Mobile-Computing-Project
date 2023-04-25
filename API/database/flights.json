@@ -1,0 +1,141 @@
+[{
+  "_id": {
+    "$oid": "644517ae13158995e29edaed"
+  },
+  "origin": "Japan",
+  "destination": "South Korea",
+  "departureDate": "2023-09-01",
+  "departureTime": "09:30:00",
+  "arrivalDate": "2023-09-01",
+  "arrivalTime": "11:30:00",
+  "flightDuration": "2 hours",
+  "airline": "ANA",
+  "flightNumber": "NH456",
+  "price": 150,
+  "imageUrl": "https://example.com/flight6.jpg",
+  "returnFlight": {
+    "origin": "South Korea",
+    "destination": "Japan",
+    "departureDate": "2023-09-08",
+    "departureTime": "14:00:00",
+    "arrivalDate": "2023-09-08",
+    "arrivalTime": "16:00:00",
+    "flightDuration": "2 hours",
+    "airline": "ANA",
+    "flightNumber": "NH789",
+    "price": 170,
+    "imageUrl": "https://example.com/flight7.jpg"
+  }
+},{
+  "_id": {
+    "$oid": "644517ae13158995e29edaec"
+  },
+  "origin": "France",
+  "destination": "Spain",
+  "departureDate": "2023-07-01",
+  "departureTime": "10:30:00",
+  "arrivalDate": "2023-07-01",
+  "arrivalTime": "12:30:00",
+  "flightDuration": "2 hours",
+  "airline": "Air France",
+  "flightNumber": "AF456",
+  "price": 200,
+  "imageUrl": "https://content.skyscnr.com/e0241c97c2b33b71e9c278bc89bb17ed/GettyImages-178640523.jpg?crop=400px:400px&quality=75",
+  "returnFlight": {
+    "origin": "Spain",
+    "destination": "France",
+    "departureDate": "2023-07-08",
+    "departureTime": "15:00:00",
+    "arrivalDate": "2023-07-08",
+    "arrivalTime": "17:00:00",
+    "flightDuration": "2 hours",
+    "airline": "Air France",
+    "flightNumber": "AF789",
+    "price": 220,
+    "imageUrl": "https://example.com/flight4.jpg"
+  }
+},{
+  "_id": {
+    "$oid": "644517ae13158995e29edaeb"
+  },
+  "origin": "United States",
+  "destination": "Mexico",
+  "departureDate": "2023-06-01",
+  "departureTime": "08:00:00",
+  "arrivalDate": "2023-06-01",
+  "arrivalTime": "11:00:00",
+  "flightDuration": "3 hours",
+  "airline": "Delta",
+  "flightNumber": "DL123",
+  "price": 350,
+  "imageUrl": "https://example.com/flight1.jpg",
+  "returnFlight": {
+    "origin": "Mexico",
+    "destination": "United States",
+    "departureDate": "2023-06-08",
+    "departureTime": "13:00:00",
+    "arrivalDate": "2023-06-08",
+    "arrivalTime": "18:00:00",
+    "flightDuration": "5 hours",
+    "airline": "Delta",
+    "flightNumber": "DL456",
+    "price": 400,
+    "imageUrl": "https://example.com/flight2.jpg"
+  }
+},{
+  "_id": {
+    "$oid": "644517ae13158995e29edaee"
+  },
+  "origin": "Brazil",
+  "destination": "Argentina",
+  "departureDate": "2023-10-01",
+  "departureTime": "12:00:00",
+  "arrivalDate": "2023-10-01",
+  "arrivalTime": "15:00:00",
+  "flightDuration": "3 hours",
+  "airline": "LATAM",
+  "flightNumber": "LA123",
+  "price": 280,
+  "imageUrl": "https://example.com/flight8.jpg",
+  "returnFlight": {
+    "origin": "Argentina",
+    "destination": "Brazil",
+    "departureDate": "2023-10-08",
+    "departureTime": "18:00:00",
+    "arrivalDate": "2023-10-08",
+    "arrivalTime": "21:00:00",
+    "flightDuration": "3 hours",
+    "airline": "LATAM",
+    "flightNumber": "LA456",
+    "price": 300,
+    "imageUrl": "https://example.com/flight9.jpg"
+  }
+},{
+  "_id": {
+    "$oid": "644517ae13158995e29edaef"
+  },
+  "origin": "Malta",
+  "destination": "England",
+  "departureDate": "2023-12-01",
+  "departureTime": "08:00:00",
+  "arrivalDate": "2023-12-01",
+  "arrivalTime": "10:30:00",
+  "flightDuration": "2.5 hours",
+  "airline": "Ryanair",
+  "flightNumber": "FR123",
+  "price": 120,
+  "imageUrl": "https://example.com/flight11.jpg",
+  "returnFlight": {
+    "origin": "England",
+    "destination": "Malta",
+    "departureDate": "2023-12-08",
+    "departureTime": "12:00:00",
+    "arrivalDate": "2023-12-08",
+    "arrivalTime": "14:30:00",
+    "flightDuration": "2.5 hours",
+    "airline": "Ryanair",
+    "flightNumber": "FR456",
+    "price": 130,
+    "imageUrl": "https://example.com/flight12.jpg"
+  }
+}]

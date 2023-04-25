@@ -1,0 +1,107 @@
+[{
+    "_id": {
+      "$oid": "6446347e809fc0fcbf66468c"
+    },
+    "country": "France",
+    "city": "Paris",
+    "hotel_name": "Hotel Paris",
+    "price_per_night": 200,
+    "address": "18 Rue de la Paix, 75002 Paris, France",
+    "available_dates": [
+      {
+        "start_date": {
+          "$date": "2023-01-01T00:00:00.000Z"
+        },
+        "end_date": {
+          "$date": "2023-12-31T00:00:00.000Z"
+        }
+      }
+    ]
+  },{
+    "_id": {
+      "$oid": "6446347e809fc0fcbf66468b"
+    },
+    "country": "Spain",
+    "city": "Madrid",
+    "hotel_name": "Hotel Madrid",
+    "price_per_night": 150,
+    "address": "Calle de Gran Vía, 21, 28013 Madrid, Spain",
+    "available_dates": [
+      {
+        "start_date": {
+          "$date": "2023-01-01T00:00:00.000Z"
+        },
+        "end_date": {
+          "$date": "2023-12-31T00:00:00.000Z"
+        }
+      }
+    ]
+  },{
+    "_id": {
+      "$oid": "6446347e809fc0fcbf664690"
+    },
+    "country": "United Kingdom",
+    "city": "London",
+    "hotel_name": "Hotel London",
+    "price_per_night": 220,
+    "address": "10 Wardour St, Soho, London W1D 6QF, United Kingdom",
+    "available_dates": [
+      {
+        "start_date": "2023-01-01",
+        "end_date": "2023-12-31"
+      }
+    ]
+  },{
+    "_id": {
+      "$oid": "6446347e809fc0fcbf66468d"
+    },
+    "country": "Hungary",
+    "city": "Budapest",
+    "hotel_name": "Hotel Budapest",
+    "price_per_night": 100,
+    "address": "Erzsébet krt. 9-11, 1051 Budapest, Hungary",
+    "available_dates": [
+      {
+        "start_date": {
+          "$date": "2023-01-01T00:00:00.000Z"
+        },
+        "end_date": {
+          "$date": "2023-12-31T00:00:00.000Z"
+        }
+      }
+    ]
+  },{
+    "_id": {
+      "$oid": "6446347e809fc0fcbf66468e"
+    },
+    "country": "United States",
+    "city": "New York",
+    "hotel_name": "Hotel New York",
+    "price_per_night": 250,
+    "address": "373 Park Ave S, New York, NY 10016, United States",
+    "available_dates": [
+      {
+        "start_date": "2023-01-01",
+        "end_date": "2023-12-31"
+      }
+    ]
+  },{
+    "_id": {
+      "$oid": "6446347e809fc0fcbf66468f"
+    },
+    "country": "United States",
+    "city": "Los Angeles",
+    "hotel_name": "Hotel Los Angeles",
+    "price_per_night": 180,
+    "address": "555 W 5th St, Los Angeles, CA 90013, United States",
+    "available_dates": [
+      {
+        "start_date": {
+          "$date": "2023-01-01T00:00:00.000Z"
+        },
+        "end_date": {
+          "$date": "2023-12-31T00:00:00.000Z"
+        }
+      }
+    ]
+  }]
