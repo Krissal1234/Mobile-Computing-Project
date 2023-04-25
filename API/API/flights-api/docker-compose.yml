@@ -1,0 +1,56 @@
+version: "3.9"
+
+services:
+  database-service:
+    image: mongo
+    container_name: database-service
+    ports:
+      - 27017:27017
+    restart: always
+    networks: 
+      - shared-network
+
+  db-seed-service:
+    depends_on:
+      - database-service
+    networks:
+    - shared-network
+    links: 
+      - database-service
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    command: sh -c "mongoimport --host database-service --db api --collection flights --type json --file /data/flights.json && mongoimport --host database-service --db api --collection hotels --type json --file /data/hotels.json"
+    volumes:
+      - ./database/data:/data
+
+  api-service:
+    networks: 
+      - shared-network
+    environment:
+      - "MONGO_URI=mongodb://database-service:27017/api"
+    depends_on:
+      - database-service
+    ports:
+      - 8080:8080
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    restart: always
+    links:
+      - database-service
+
+  android-service:
+    image: mongo
+    container_name: android-service
+    ports:
+      - 27017:27017
+    restart: always
+    networks: 
+      - shared-network
+
+networks:
+  shared-network:
+
+volumes:
+  mongodata:
