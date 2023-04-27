@@ -155,9 +155,14 @@ public class FavouriteTripFragment extends Fragment {
         hotelText.setVisibility(View.GONE);
         animationView.setVisibility(View.GONE);
 
-        hotelName.setText(hotel.getHotelName());
-
-        hotelPrice.setText(hotel.getPricePerNight());
-        hotelAddress.setText(hotel.getAddress());
+        if(hotel != null) {
+            hotelName.setText(hotel.getHotelName());
+            hotelPrice.setText(hotel.getPricePerNight());
+            hotelAddress.setText(hotel.getAddress());
+        }else{
+            hotelCard.setVisibility(View.GONE);
+            animationView.setVisibility(View.VISIBLE);
+            hotelText.setVisibility(View.VISIBLE);
+        }
     }
 }
