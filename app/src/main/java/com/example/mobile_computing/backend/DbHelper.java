@@ -68,6 +68,8 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public void removeFavorite(String flightData, String hotelData) {
+        Log.i("removed from DB", flightData);
+        Log.i("removed from DB", hotelData);
         SQLiteDatabase db = getWritableDatabase();
 
         String selection = "flightData = ? AND hotelData = ?";
@@ -96,6 +98,14 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
 
         return data;
+    }
+
+    public void clearFavorites() {
+        SQLiteDatabase db = getWritableDatabase();
+
+        db.execSQL("DELETE FROM favouritesTable");
+
+        db.close();
     }
 
 

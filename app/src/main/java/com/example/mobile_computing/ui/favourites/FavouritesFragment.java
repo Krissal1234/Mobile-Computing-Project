@@ -101,4 +101,6 @@ public class FavouritesFragment extends Fragment implements FavouritesSelectList
         navController.navigate(R.id.action_nav_favourites_to_nav_favourite_trip, bundle);
 
     }
+
+
 }

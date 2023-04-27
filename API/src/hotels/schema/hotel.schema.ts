@@ -23,6 +23,13 @@ export class Hotel {
 
   @Prop({ required: true })
   address: string;
+  
+  @Prop({ required: true })
+  latitude: number;
+
+  @Prop({ required: true })
+  longitude: number;
+
 
   @Prop({type: [{ start_date: Date, end_date: Date }], required: true})
   available_dates: { start_date: Date, end_date: Date }[];

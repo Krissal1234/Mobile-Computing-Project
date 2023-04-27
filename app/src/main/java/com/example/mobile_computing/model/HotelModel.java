@@ -15,16 +15,10 @@ public class HotelModel implements Parcelable {
     private String hotel_name;
     private int price_per_night;
     private String address;
+    private double latitude;
+    private double longitude;
     private List<AvailableDate> available_dates;
 
-    public HotelModel(String country, String city, String hotel_name, int price_per_night, String address, List<AvailableDate> available_dates) {
-        this.country = country;
-        this.city = city;
-        this.hotel_name = hotel_name;
-        this.price_per_night = price_per_night;
-        this.address = address;
-        this.available_dates = available_dates;
-    }
 
     protected HotelModel(Parcel in) {
         country = in.readString();
@@ -32,6 +26,8 @@ public class HotelModel implements Parcelable {
         hotel_name = in.readString();
         price_per_night = in.readInt();
         address = in.readString();
+        latitude = in.readDouble();
+        longitude = in.readDouble();
     }
 
     public static final Creator<HotelModel> CREATOR = new Creator<HotelModel>() {
@@ -45,6 +41,33 @@ public class HotelModel implements Parcelable {
             return new HotelModel[size];
         }
     };
+
+    public HotelModel(String country, String city, String hotel_name, int price_per_night, String address, double latitude, double longitude, List<AvailableDate> available_dates) {
+        this.country = country;
+        this.city = city;
+        this.hotel_name = hotel_name;
+        this.price_per_night = price_per_night;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.available_dates = available_dates;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(country);
+        dest.writeString(city);
+        dest.writeString(hotel_name);
+        dest.writeInt(price_per_night);
+        dest.writeString(address);
+        dest.writeDouble(latitude);
+        dest.writeDouble(longitude);
+    }
 
     public String getCountry() {
         return country;
@@ -66,21 +89,15 @@ public class HotelModel implements Parcelable {
         return address;
     }
 
-    public List<AvailableDate> getAvailableDates() {
+    public String getLatitude() {
+        return Double.toString(latitude);
+    }
+
+    public String getLongitude() {
+        return Double.toString(longitude);
+    }
+
+    public List<AvailableDate> getAvailable_dates() {
         return available_dates;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeString(country);
-        dest.writeString(city);
-        dest.writeString(hotel_name);
-        dest.writeInt(price_per_night);
-        dest.writeString(address);
     }
 }

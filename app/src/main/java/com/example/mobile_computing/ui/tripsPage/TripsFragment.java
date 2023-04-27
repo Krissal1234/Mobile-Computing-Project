@@ -120,15 +120,17 @@ public class TripsFragment extends Fragment {
                             isFavoriteSelected = true;
                             favouriteButton.setImageResource(R.drawable.ic_baseline_favorite_24_selected);
                         }
-//                        Button mapButton = view.findViewById(R.id.map_button);
-//                        mapButton.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                String url = "https://www.google.com/maps/search/?api=1&query=latitude,longitude";
-//                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//                                startActivity(intent);
-//                            }
-//                        });
+                        String latitude = hotelModels.get(0).getLatitude();
+                        String longitude = hotelModels.get(0).getLongitude();
+                        Button mapButton = view.findViewById(R.id.map_button);
+                        mapButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String url = "https://www.google.com/maps/search/?api=1&query="+latitude+","+ longitude;
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                startActivity(intent);
+                            }
+                        });
 
 //                    HotelSelectListener adapter = new HotelRecyclerViewAdapter(getContext(), (ArrayList<HotelModel>) hotelModels, FlightsFragment.this);
 //                    recyclerView.setAdapter(adapter);
@@ -142,6 +144,7 @@ public class TripsFragment extends Fragment {
                         hotelCard.setVisibility(View.GONE);
                         animationView.setVisibility(View.VISIBLE);
                         hotelText.setVisibility(View.VISIBLE);
+                        hotelJson = "null";
 //                    loadingProgressBar.setVisibility(View.GONE);
 //                    animationView.setVisibility(View.VISIBLE);
 //                    noFlightsText.setVisibility(View.VISIBLE);
