@@ -18,6 +18,7 @@ import com.example.mobile_computing.model.FlightModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -33,6 +34,7 @@ public class FlightsFragment extends Fragment implements FlightsSelectListener {
     private String departureDate;
     private String returnDate;
     private NavController navController;
+    private FragmentManager fragmentManager;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,7 +68,13 @@ public class FlightsFragment extends Fragment implements FlightsSelectListener {
             originLocation = getArguments().getString("originLocation");
             departureDate = getArguments().getString("departureDate");
             returnDate = getArguments().getString("returnDate");
-        }
+//            int backStackEntryCount = fragmentManager.getBackStackEntryCount();
+//            if (backStackEntryCount > 0) {
+//                FragmentManager.BackStackEntry backStackEntry = fragmentManager.getBackStackEntryAt(backStackEntryCount - 1);
+//                String fragmentTag = backStackEntry.getName();
+//              Log.i("FragmentTag", fragmentTag);
+            }
+
             if(checkCache(originLocation,departureDate,returnDate)){
 
 
@@ -100,7 +108,9 @@ public class FlightsFragment extends Fragment implements FlightsSelectListener {
         navController = NavHostFragment.findNavController(this);
         return view;
     }
-
+    public void setFragmentManager(FragmentManager fragmentManager) {
+        this.fragmentManager = fragmentManager;
+    }
     private boolean checkCache(String origin, String departureDate, String returnDate) {
         String cacheKey = origin + departureDate + returnDate;
 

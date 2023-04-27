@@ -1,48 +1,30 @@
-package com.example.mobile_computing.ui.tripsPage;
+package com.example.mobile_computing.ui.favourites;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.mobile_computing.R;
 import com.example.mobile_computing.backend.DbHelper;
 import com.example.mobile_computing.model.FlightModel;
 import com.example.mobile_computing.model.HotelModel;
-import com.example.mobile_computing.model.ReturnFlight;
-import com.example.mobile_computing.ui.flightsPage.FlightsFragment;
-import com.example.mobile_computing.ui.flightsPage.FlightsRestRepository;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
-public class TripsFragment extends Fragment {
+public class FavouriteTripFragment extends Fragment {
 
     private FlightModel flight;
     private TextView arrivalLocationDeparture;
@@ -55,12 +37,12 @@ public class TripsFragment extends Fragment {
     private TextView hotelName;
     private TextView hotelPrice;
     private TextView hotelAddress;
-    private boolean isFavoriteSelected = false;
+    private boolean isFavoriteSelected = true;
     private ImageView favouriteButton;
     HotelModel hotel;
     private CardView hotelCard;
-    private String hotelJson;
     private String flightJson;
+    private String hotelJson;
     private TextView arrivalLocationReturn;
     private TextView originLocationReturn;
     private TextView totalDurationReturn;
@@ -72,90 +54,31 @@ public class TripsFragment extends Fragment {
     private boolean isNavigatingFromFavorites;
     private LottieAnimationView animationView;
     private TextView hotelText;
-    private MapView mapView;
-    /**
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Trips");
 
 
         View view = inflater.inflate(R.layout.fragment_trips, container, false);
-
+        dbHelper = new DbHelper(getContext());
 
 
         Gson gson = new Gson();
         if (getArguments() != null) {
             flight = getArguments().getParcelable("flightModel");
+            hotel = getArguments().getParcelable("hotelModel");
+
+            }
 
 
+        instantiateTextViews(view, flight, hotel);
+         flightJson = gson.toJson(flight);
+         hotelJson = gson.toJson(hotel);
+        if(dbHelper.isFavorite(flightJson,hotelJson)){
+            isFavoriteSelected = true;
+            favouriteButton.setImageResource(R.drawable.ic_baseline_favorite_24_selected);
         }
-
-        instantiateTextViews(view,flight);
-        dbHelper = new DbHelper(getContext());
-
-        flightJson = gson.toJson(flight);
-
-
-            HotelsRestRepository repository = HotelsRestRepository.getInstance();
-            repository.fetchHotels(flight.getArrivalDate(), flight.getReturnFlight().getDepartureDate(),flight.getDestination()).observe(getActivity(), new Observer<List<HotelModel>>() {
-                @Override
-                public void onChanged(List<HotelModel> hotelModels) {
-
-                    if(!hotelModels.isEmpty()){
-
-                        hotelName.setText(hotelModels.get(0).getHotelName());
-                        Log.i("hotelName", hotelModels.get(0).getHotelName().toString());
-                        hotelPrice.setText(hotelModels.get(0).getPricePerNight());
-                        hotelAddress.setText(hotelModels.get(0).getAddress());
-
-                        hotelJson = gson.toJson(hotelModels.get(0));
-                        Log.i("hotel", hotelJson);
-                        if(dbHelper.isFavorite(flightJson,hotelJson)){
-                            isFavoriteSelected = true;
-                            favouriteButton.setImageResource(R.drawable.ic_baseline_favorite_24_selected);
-                        }
-//                        Button mapButton = view.findViewById(R.id.map_button);
-//                        mapButton.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                String url = "https://www.google.com/maps/search/?api=1&query=latitude,longitude";
-//                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//                                startActivity(intent);
-//                            }
-//                        });
-
-//                    HotelSelectListener adapter = new HotelRecyclerViewAdapter(getContext(), (ArrayList<HotelModel>) hotelModels, FlightsFragment.this);
-//                    recyclerView.setAdapter(adapter);
-//                    recyclerView.setHasFixedSize(true);
-//                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//                    loadingProgressBar.setVisibility(View.GONE);
-////                            emptyTextView.setVisibility(View.GONE);
-//                    recyclerView.setVisibility(View.VISIBLE);
-                    }else{
-                        Log.i("hotel","hotels not found");
-                        hotelCard.setVisibility(View.GONE);
-                        animationView.setVisibility(View.VISIBLE);
-                        hotelText.setVisibility(View.VISIBLE);
-//                    loadingProgressBar.setVisibility(View.GONE);
-//                    animationView.setVisibility(View.VISIBLE);
-//                    noFlightsText.setVisibility(View.VISIBLE);
-//                    backButton.setVisibility(View.VISIBLE);
-
-                    }
-
-                }
-            });
-
-
-
-
-
         favouriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -184,13 +107,11 @@ public class TripsFragment extends Fragment {
 
             }
         });
-
         return view;
     }
 
 
-
-    private void instantiateTextViews(View view, FlightModel flight) {
+    private void instantiateTextViews(View view, FlightModel flight, HotelModel hotel) {
         arrivalLocationDeparture = view.findViewById(R.id.arrivalLocation_departure);
         originLocationDeparture = view.findViewById(R.id.originLocation_departure);
         totalDurationDeparture = view.findViewById(R.id.totalDuration_departure);
@@ -233,7 +154,10 @@ public class TripsFragment extends Fragment {
         totalDurationReturn.setText(flight.getReturnFlight().getFlightDuration());
         hotelText.setVisibility(View.GONE);
         animationView.setVisibility(View.GONE);
+
+        hotelName.setText(hotel.getHotelName());
+
+        hotelPrice.setText(hotel.getPricePerNight());
+        hotelAddress.setText(hotel.getAddress());
     }
-
-
 }

@@ -98,10 +98,7 @@ public class FavouritesFragment extends Fragment implements FavouritesSelectList
         bundle.putParcelable("hotelModel", hotelModel);
         Log.d("navigation","Navigating to trips");
 
-        // TODO fix this find a way how to do it using navcontroller
-        Intent intent = new Intent(getActivity(), TripsFragment.class);
-        intent.putExtra("isNavigatingFromFavorites", true);
-        startActivity(intent);
+        navController.navigate(R.id.action_nav_favourites_to_nav_favourite_trip, bundle);
 
     }
 }

@@ -16,11 +16,19 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_favourites"
         android:name="com.example.mobile_computing.ui.favourites.FavouritesFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_favourites" />
-
+        tools:layout="@layout/fragment_favourites" >
+        <action
+            android:id="@+id/action_nav_favourites_to_nav_favourite_trip"
+            app:destination="@id/nav_favourite_trip" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_favourite_trip"
+        android:name="com.example.mobile_computing.ui.favourites.FavouriteTripFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_trips" />
     <fragment
         android:id="@+id/nav_flights"
         android:name="com.example.mobile_computing.ui.flightsPage.FlightsFragment"
