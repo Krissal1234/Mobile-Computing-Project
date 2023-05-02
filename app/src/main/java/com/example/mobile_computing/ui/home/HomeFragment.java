@@ -1,6 +1,7 @@
 package com.example.mobile_computing.ui.home;
 
 import android.app.DatePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -167,11 +168,12 @@ public class HomeFragment extends Fragment {
                 }
             });
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, countryList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, countryList);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             countrySpinner.setAdapter(adapter);
             int position = adapter.getPosition("Malta");
             countrySpinner.setSelection(position);
+
 
         }
     /**

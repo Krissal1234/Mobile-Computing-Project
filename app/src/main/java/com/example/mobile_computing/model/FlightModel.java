@@ -3,7 +3,12 @@ package com.example.mobile_computing.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.mobile_computing.utils.DateUtils;
+
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class FlightModel implements Parcelable {
@@ -73,7 +78,7 @@ public class FlightModel implements Parcelable {
     }
 
     public String getDepartureDate() {
-        return departureDate;
+        return DateUtils.formatDate(departureDate);
     }
 
     public String getDepartureTime() {
@@ -132,6 +137,7 @@ public class FlightModel implements Parcelable {
         dest.writeString(imageUrl);
         dest.writeParcelable(returnFlight, flags);
     }
+
 }
 
 

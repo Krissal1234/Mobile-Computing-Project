@@ -12,7 +12,7 @@
   "airline": "ANA",
   "flightNumber": "NH456",
   "price": 150,
-  "imageUrl": "https://example.com/flight6.jpg",
+  "imageUrl": "https://content.skyscnr.com/db465e93dcaad614e9bfcaddb5865e36/GettyImages-505777764.jpg?crop=400px:400px&quality=75",
   "returnFlight": {
     "origin": "South Korea",
     "destination": "Japan",
@@ -32,9 +32,9 @@
   },
   "origin": "France",
   "destination": "Spain",
-  "departureDate": "2023-07-01",
+  "departureDate": "2023-08-01",
   "departureTime": "10:30:00",
-  "arrivalDate": "2023-07-01",
+  "arrivalDate": "2023-08-01",
   "arrivalTime": "12:30:00",
   "flightDuration": "2 hours",
   "airline": "Air France",
@@ -44,9 +44,9 @@
   "returnFlight": {
     "origin": "Spain",
     "destination": "France",
-    "departureDate": "2023-07-08",
+    "departureDate": "2023-08-08",
     "departureTime": "15:00:00",
-    "arrivalDate": "2023-07-08",
+    "arrivalDate": "2023-08-08",
     "arrivalTime": "17:00:00",
     "flightDuration": "2 hours",
     "airline": "Air France",
@@ -68,7 +68,7 @@
   "airline": "Delta",
   "flightNumber": "DL123",
   "price": 350,
-  "imageUrl": "https://example.com/flight1.jpg",
+  "imageUrl": "https://content.skyscnr.com/1ad5fff55243bd5f76c33e3577c2540d/GettyImages-483527336.jpg?crop=400px:400px&quality=75",
   "returnFlight": {
     "origin": "Mexico",
     "destination": "United States",
@@ -96,7 +96,7 @@
   "airline": "LATAM",
   "flightNumber": "LA123",
   "price": 280,
-  "imageUrl": "https://example.com/flight8.jpg",
+  "imageUrl": "https://content.skyscnr.com/e2ef29b11c3586421a32b14b9951b01c/gettyimages-673156625.jpg?crop=400px:400px&quality=75",
   "returnFlight": {
     "origin": "Argentina",
     "destination": "Brazil",
@@ -115,22 +115,22 @@
     "$oid": "644517ae13158995e29edaef"
   },
   "origin": "Malta",
-  "destination": "England",
-  "departureDate": "2023-12-01",
+  "destination": "Netherlands",
+  "departureDate": "2023-08-01",
   "departureTime": "08:00:00",
-  "arrivalDate": "2023-12-01",
+  "arrivalDate": "2023-08-01",
   "arrivalTime": "10:30:00",
   "flightDuration": "2.5 hours",
   "airline": "Ryanair",
   "flightNumber": "FR123",
   "price": 120,
-  "imageUrl": "https://example.com/flight11.jpg",
+  "imageUrl": "https://content.skyscnr.com/ad69d6422f78bb52563685faad33e0c1/GettyImages-516036155.jpg?crop=400px:400px&quality=75",
   "returnFlight": {
-    "origin": "England",
+    "origin": "Netherlands",
     "destination": "Malta",
-    "departureDate": "2023-12-08",
+    "departureDate": "2023-08-08",
     "departureTime": "12:00:00",
-    "arrivalDate": "2023-12-08",
+    "arrivalDate": "2023-08-08",
     "arrivalTime": "14:30:00",
     "flightDuration": "2.5 hours",
     "airline": "Ryanair",
@@ -138,4 +138,116 @@
     "price": 130,
     "imageUrl": "https://example.com/flight12.jpg"
   }
-}]
+},{
+  "_id": {
+  "$oid": "644517ae13158995e29edaf0"
+  },
+  "origin": "Malta",
+  "destination": "Spain",
+  "departureDate": "2023-08-01",
+  "departureTime": "06:00:00",
+  "arrivalDate": "2023-08-01",
+  "arrivalTime": "08:00:00",
+  "flightDuration": "2 hours",
+  "airline": "Air Malta",
+  "flightNumber": "KM123",
+  "price": 150,
+  "imageUrl": "https://content.skyscnr.com/e0241c97c2b33b71e9c278bc89bb17ed/GettyImages-178640523.jpg?crop=400px:400px&quality=75",
+  "returnFlight": {
+  "origin": "Spain",
+  "destination": "Malta",
+  "departureDate": "2023-08-08",
+  "departureTime": "10:00:00",
+  "arrivalDate": "2023-08-08",
+  "arrivalTime": "12:00:00",
+  "flightDuration": "2 hours",
+  "airline": "Air Malta",
+  "flightNumber": "KM456",
+  "price": 170,
+  "imageUrl": "https://example.com/flight11.jpg"
+  }
+  }, {
+  "_id": {
+  "$oid": "644517ae13158995e29edaf1"
+  },
+  "origin": "Malta",
+  "destination": "Italy",
+  "departureDate": "2023-08-01",
+  "departureTime": "14:00:00",
+  "arrivalDate": "2023-08-01",
+  "arrivalTime": "15:30:00",
+  "flightDuration": "1.5 hours",
+  "airline": "Ryanair",
+  "flightNumber": "FR123",
+  "price": 120,
+  "imageUrl": "https://content.skyscnr.com/f348d79cfdf70286dc759d24618a23c3/GettyImages-182281845.jpg?crop=400px:400px&quality=75",
+  "returnFlight": {
+  "origin": "Italy",
+  "destination": "Malta",
+  "departureDate": "2023-08-08",
+  "departureTime": "18:00:00",
+  "arrivalDate": "2023-08-08",
+  "arrivalTime": "19:30:00",
+  "flightDuration": "1.5 hours",
+  "airline": "Ryanair",
+  "flightNumber": "FR456",
+  "price": 100,
+  "imageUrl": "https://example.com/flight13.jpg"
+  }
+  }, {
+    "_id": {
+    "$oid": "644517ae13158995e29edaf1"
+    },
+    "origin": "Malta",
+    "destination": "Ireland",
+    "departureDate": "2023-08-01",
+    "departureTime": "14:00:00",
+    "arrivalDate": "2023-08-01",
+    "arrivalTime": "16:30:00",
+    "flightDuration": "2.5 hours",
+    "airline": "Ryanair",
+    "flightNumber": "FR123",
+    "price": 120,
+    "imageUrl": "https://content.skyscnr.com/34f61dd7f8deb4059c12b0b8de9ee002/GettyImages-472229890.jpg?crop=400px:400px&quality=75",
+    "returnFlight": {
+    "origin": "Ireland",
+    "destination": "Malta",
+    "departureDate": "2023-08-08",
+    "departureTime": "18:00:00",
+    "arrivalDate": "2023-08-08",
+    "arrivalTime": "20:30:00",
+    "flightDuration": "2.5 hours",
+    "airline": "Ryanair",
+    "flightNumber": "FR456",
+    "price": 140,
+    "imageUrl": "https://example.com/flight13.jpg"
+    }
+    }, {
+      "_id": {
+      "$oid": "644517ae13158995e29edaf1"
+      },
+      "origin": "Malta",
+      "destination": "Poland",
+      "departureDate": "2023-08-01",
+      "departureTime": "14:00:00",
+      "arrivalDate": "2023-08-01",
+      "arrivalTime": "16:30:00",
+      "flightDuration": "2.5 hours",
+      "airline": "Ryanair",
+      "flightNumber": "FR123",
+      "price": 180,
+      "imageUrl": "https://content.skyscnr.com/16636d692d5905702ad23e3d35c65e48/GettyImages-178367416.jpg?crop=400px:400px&quality=75",
+      "returnFlight": {
+      "origin": "Poland",
+      "destination": "Malta",
+      "departureDate": "2023-08-08",
+      "departureTime": "18:00:00",
+      "arrivalDate": "2023-08-08",
+      "arrivalTime": "20:30:00",
+      "flightDuration": "2.5 hours",
+      "airline": "Ryanair",
+      "flightNumber": "FR456",
+      "price": 140,
+      "imageUrl": "https://example.com/flight13.jpg"
+      }
+      }]

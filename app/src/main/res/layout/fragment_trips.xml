@@ -21,14 +21,12 @@
 
         <FrameLayout
             android:id="@+id/animation_container"
-            android:layout_width="386dp"
+            android:layout_width="match_parent"
             android:layout_height="192dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animation_view"
@@ -40,45 +38,17 @@
 
         </FrameLayout>
 
+
         <include
             android:id="@+id/includeDepartureRow"
             layout="@layout/departure_view_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/animation_container" />
-
-        <TextView
-            android:id="@+id/departure_text"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/departure"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/includeDepartureRow"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/animation_container"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/departure_date_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="25dp"
-            android:text="25/04/2023"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/includeDepartureRow"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/animation_container"
-            app:layout_constraintVertical_bias="0.074" />
 
         <include
             android:id="@+id/includeReturnRow"
@@ -92,34 +62,60 @@
             app:layout_constraintTop_toBottomOf="@+id/includeDepartureRow" />
 
         <TextView
+            android:id="@+id/departure_text"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginEnd="298dp"
+            android:text="@string/departure"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/includeDepartureRow"
+            app:layout_constraintEnd_toEndOf="@+id/includeDepartureRow"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <TextView
+            android:id="@+id/departure_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="280dp"
+            android:text="25/04/2023"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/includeDepartureRow"
+            app:layout_constraintStart_toStartOf="@+id/includeDepartureRow"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
             android:id="@+id/returns"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
 
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="327dp"
             android:text="@string/return_string"
             android:textAlignment="center"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/includeReturnRow"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/includeDepartureRow"
-            app:layout_constraintVertical_bias="0.625" />
+            app:layout_constraintEnd_toEndOf="@+id/includeReturnRow"
+            app:layout_constraintTop_toBottomOf="@+id/includeDepartureRow" />
 
         <TextView
             android:id="@+id/return_date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="277dp"
+            android:layout_marginTop="9dp"
             android:text="30/04/2023"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/includeReturnRow"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/includeDepartureRow"
-            app:layout_constraintVertical_bias="0.625" />
+            app:layout_constraintStart_toStartOf="@+id/includeReturnRow"
+            app:layout_constraintTop_toBottomOf="@+id/includeDepartureRow" />
 
         <ImageView
             android:id="@+id/favorite_button"
@@ -141,7 +137,7 @@
             android:textSize="29dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.532"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/includeReturnRow"
             app:layout_constraintVertical_bias="0.014" />
@@ -152,11 +148,10 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="44dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cheapestHotelText" />
+            app:layout_constraintTop_toBottomOf="@+id/no_hotels" />
 
         <View
             android:id="@+id/divider"
@@ -166,37 +161,42 @@
             android:layout_marginBottom="8dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintBottom_toTopOf="@+id/cheapestHotelText"
-            app:layout_constraintTop_toBottomOf="@+id/includeReturnRow"
-            app:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="0dp" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/home_anim"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            app:layout_constraintBottom_toTopOf="@+id/includeHotelRow"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cheapestHotelText"
-            app:layout_constraintVertical_bias="0.416"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/home" />
+            app:layout_constraintTop_toBottomOf="@+id/includeReturnRow"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="146dp"
+            android:layout_marginTop="22dp"
+            app:layout_constraintBottom_toBottomOf="@+id/includeHotelRow"
+            app:layout_constraintTop_toBottomOf="@+id/no_hotels"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="0dp">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/home_anim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/home"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="742dp" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/no_hotels"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
             android:text="No hotels available :("
             android:textSize="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/includeHotelRow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_anim"
-            app:layout_constraintVertical_bias="0.355" />
+            app:layout_constraintTop_toBottomOf="@+id/cheapestHotelText" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -4,6 +4,8 @@ package com.example.mobile_computing.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.mobile_computing.utils.DateUtils;
+
 public class ReturnFlight implements Parcelable  {
     private String origin;
     private String destination;
@@ -66,7 +68,7 @@ public class ReturnFlight implements Parcelable  {
     }
 
     public String getDepartureDate() {
-        return departureDate;
+        return DateUtils.formatDate(departureDate);
     }
 
     public String getDepartureTime() {
@@ -74,7 +76,7 @@ public class ReturnFlight implements Parcelable  {
     }
 
     public String getArrivalDate() {
-        return arrivalDate;
+        return DateUtils.formatDate(arrivalDate);
     }
 
     public String getArrivalTime() {

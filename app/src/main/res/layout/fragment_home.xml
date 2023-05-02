@@ -1,82 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#524440">
 
-
-    <EditText
-        android:id="@+id/departure_date"
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
-
-        android:background="@drawable/rectangle_edit_text"
-        android:backgroundTint="#001514"
-        android:color="#001514"
-        android:hint="@string/departureDate"
-        android:inputType="none"
-        android:minWidth="190dp"
-        android:padding="12dp"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff"
-        app:layout_constraintEnd_toStartOf="@+id/return_date"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/origin_location" />
-
-    <Spinner
-        android:id="@+id/origin_location"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-
-        android:layout_marginTop="152dp"
-        android:background="@drawable/rectangle_edit_text"
-        android:minWidth="150dp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/return_date"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginEnd="4dp"
-        android:background="@drawable/rectangle_edit_text"
-        android:backgroundTint="#001514"
-        android:hint="@string/returnDate"
-        android:inputType="none"
-        android:minWidth="190dp"
-        android:padding="12dp"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/origin_location" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#001514"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        android:src="@drawable/flight_image" />
 
-    <Button
-        android:id="@+id/search_button"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.HomeFragment">
 
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_marginTop="60dp"
-        android:backgroundTint="#001514"
-        android:text="@string/find_trip"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/departure_date"
-        app:layout_constraintVertical_bias="0.0" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/departure_date"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/rectangle_edit_text"
+            android:backgroundTint="#A69F98"
+            android:color="#A69F98"
+            android:hint="@string/departureDate"
+            android:inputType="none"
+            android:minWidth="190dp"
+            android:padding="12dp"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            app:layout_constraintEnd_toStartOf="@+id/return_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/origin_location"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <Spinner
+            android:id="@+id/origin_location"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_marginTop="232dp"
+            android:background="@drawable/style_spinner"
+            android:minWidth="150dp"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/return_date"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/rectangle_edit_text"
+            android:backgroundTint="#A69F98"
+            android:hint="@string/returnDate"
+            android:inputType="none"
+            android:minWidth="190dp"
+            android:padding="12dp"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/departure_date"
+            app:layout_constraintTop_toBottomOf="@+id/origin_location"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#001514"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <Button
+            android:id="@+id/search_button"
+
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginTop="60dp"
+            android:backgroundTint="#A69F98"
+            android:text="@string/find_trip"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/departure_date"
+            app:layout_constraintVertical_bias="0.095" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

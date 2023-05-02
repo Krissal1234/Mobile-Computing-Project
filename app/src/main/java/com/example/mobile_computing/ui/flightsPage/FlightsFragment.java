@@ -2,6 +2,7 @@ package com.example.mobile_computing.ui.flightsPage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -83,22 +84,34 @@ public class FlightsFragment extends Fragment implements FlightsSelectListener {
                 repository.fetchFlights(originLocation,departureDate,returnDate).observe(getActivity(), new Observer<List<FlightModel>>() {
                     @Override
                     public void onChanged(List<FlightModel> flightModels) {
-                        Log.i("flights",flightModels.toString());
-                        if(!flightModels.isEmpty()){
-                            FlightsRecyclerViewAdapter adapter = new FlightsRecyclerViewAdapter(getContext(), (ArrayList<FlightModel>) flightModels, FlightsFragment.this);
-                            recyclerView.setAdapter(adapter);
-                            recyclerView.setHasFixedSize(true);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                            loadingProgressBar.setVisibility(View.GONE);
-//                            emptyTextView.setVisibility(View.GONE);
-                            recyclerView.setVisibility(View.VISIBLE);
-                        }else{
+                        if (flightModels == null) {
+                           Log.d("null", "Flights is null");
                             loadingProgressBar.setVisibility(View.GONE);
                             animationView.setVisibility(View.VISIBLE);
+                            noFlightsText.setText("There has been an error in the request, please try again later.");
+                            noFlightsText.setTextColor(Color.RED);
                             noFlightsText.setVisibility(View.VISIBLE);
                             backButton.setVisibility(View.VISIBLE);
+                        } else {
+                            Log.i("flights",flightModels.toString());
+                            if(!flightModels.isEmpty()){
+                                FlightsRecyclerViewAdapter adapter = new FlightsRecyclerViewAdapter(getContext(), (ArrayList<FlightModel>) flightModels, FlightsFragment.this);
+                                recyclerView.setAdapter(adapter);
+                                recyclerView.setHasFixedSize(true);
+                                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                                loadingProgressBar.setVisibility(View.GONE);
+//                            emptyTextView.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);
+                            }else{
+                                loadingProgressBar.setVisibility(View.GONE);
+                                animationView.setVisibility(View.VISIBLE);
+                                noFlightsText.setVisibility(View.VISIBLE);
+                                backButton.setVisibility(View.VISIBLE);
 
+                            }
                         }
+
+
 
                     }
                 });
