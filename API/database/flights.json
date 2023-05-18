@@ -26,7 +26,8 @@
     "price": 170,
     "imageUrl": "https://example.com/flight7.jpg"
   }
-},{
+},
+  {
   "_id": {
     "$oid": "644517ae13158995e29edaec"
   },
