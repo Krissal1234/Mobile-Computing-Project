@@ -28,7 +28,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Fragment for displaying flights.
+ */
 public class FlightsFragment extends Fragment implements FlightsSelectListener {
 //    private FlightsViewModel flightViewModel;
     private String originLocation;
@@ -40,9 +42,6 @@ public class FlightsFragment extends Fragment implements FlightsSelectListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Flights");
-
-
-
 
         View view = inflater.inflate(R.layout.fragment_flights, container, false);
         ProgressBar loadingProgressBar = view.findViewById(R.id.loadingProgressBar);
@@ -61,85 +60,94 @@ public class FlightsFragment extends Fragment implements FlightsSelectListener {
         animationView.setVisibility(View.GONE);
         noFlightsText.setVisibility(View.GONE);
         backButton.setVisibility(View.GONE);
-
+        navController = NavHostFragment.findNavController(this);
         RecyclerView recyclerView = view.findViewById(R.id.flightsRecyclerView);
-
 
         if (getArguments() != null) {
             originLocation = getArguments().getString("originLocation");
             departureDate = getArguments().getString("departureDate");
             returnDate = getArguments().getString("returnDate");
-//            int backStackEntryCount = fragmentManager.getBackStackEntryCount();
-//            if (backStackEntryCount > 0) {
-//                FragmentManager.BackStackEntry backStackEntry = fragmentManager.getBackStackEntryAt(backStackEntryCount - 1);
-//                String fragmentTag = backStackEntry.getName();
-//              Log.i("FragmentTag", fragmentTag);
-            }
-
-            if(checkCache(originLocation,departureDate,returnDate)){
-
-
-            }else {
-                FlightsRestRepository repository = FlightsRestRepository.getInstance();
-                repository.fetchFlights(originLocation,departureDate,returnDate).observe(getActivity(), new Observer<List<FlightModel>>() {
-                    @Override
-                    public void onChanged(List<FlightModel> flightModels) {
-                        if (flightModels == null) {
-                           Log.d("null", "Flights is null");
-                            loadingProgressBar.setVisibility(View.GONE);
-                            animationView.setVisibility(View.VISIBLE);
-                            noFlightsText.setText("There has been an error in the request, please try again later.");
-                            noFlightsText.setTextColor(Color.RED);
-                            noFlightsText.setVisibility(View.VISIBLE);
-                            backButton.setVisibility(View.VISIBLE);
-                        } else {
-                            Log.i("flights",flightModels.toString());
-                            if(!flightModels.isEmpty()){
-                                FlightsRecyclerViewAdapter adapter = new FlightsRecyclerViewAdapter(getContext(), (ArrayList<FlightModel>) flightModels, FlightsFragment.this);
-                                recyclerView.setAdapter(adapter);
-                                recyclerView.setHasFixedSize(true);
-                                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                                loadingProgressBar.setVisibility(View.GONE);
-//                            emptyTextView.setVisibility(View.GONE);
-                                recyclerView.setVisibility(View.VISIBLE);
-                            }else{
-                                loadingProgressBar.setVisibility(View.GONE);
-                                animationView.setVisibility(View.VISIBLE);
-                                noFlightsText.setVisibility(View.VISIBLE);
-                                backButton.setVisibility(View.VISIBLE);
-
-                            }
-                        }
+        }
+            fetchFlightsFromApi(view);
 
 
 
-                    }
-                });
-
-
-            }
-        navController = NavHostFragment.findNavController(this);
         return view;
     }
-    public void setFragmentManager(FragmentManager fragmentManager) {
-        this.fragmentManager = fragmentManager;
+    /**
+     * Fetches flights from the API and updates the view accordingly.
+     *
+     * @param view The view associated with the fragment required by
+     *  handleApiError() and handleApiSuccess().
+     */
+    private void fetchFlightsFromApi(View view) {
+        FlightsRestRepository repository = FlightsRestRepository.getInstance();
+        repository.fetchFlights(originLocation, departureDate, returnDate).observe(getActivity(), new Observer<List<FlightModel>>() {
+            @Override
+            public void onChanged(List<FlightModel> flightModels) {
+                if (flightModels == null) {
+                    handleApiError(view);
+                } else {
+                    handleApiSuccess(flightModels,view);
+                }
+            }
+        });
     }
-    private boolean checkCache(String origin, String departureDate, String returnDate) {
-        String cacheKey = origin + departureDate + returnDate;
 
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("api_cache", Context.MODE_PRIVATE);
-        String cache = sharedPreferences.getString(cacheKey, null);
+    /**
+     * Handles the API error case.
+     * Displays animation along with a message indicating a problem with the connection to the api.
+     * Also provides the user with a back button.
+     * @param view The view of the fragment.
+     */
+    private void handleApiError(View view) {
+        ProgressBar loadingProgressBar = view.findViewById(R.id.loadingProgressBar);
+        LottieAnimationView animationView = view.findViewById(R.id.animation_view);
+        TextView noFlightsText = view.findViewById(R.id.no_flights_text);
+        Button backButton = view.findViewById(R.id.backButton);
 
-        if(cache == null){
-            return false;
-        }else{
-          return true;
+        loadingProgressBar.setVisibility(View.GONE);
+        animationView.setVisibility(View.VISIBLE);
+        noFlightsText.setText("There has been an error in the request, please check your internet connection.");
+        noFlightsText.setTextColor(Color.RED);
+        noFlightsText.setVisibility(View.VISIBLE);
+        backButton.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Handles the API success case.
+     * removes progress bar, back button and text.
+     * Displays flight data or message that indicates that no flight data is found.
+     * @param flightModels The list of flight models.
+     * @param view The view of the fragment.
+     */
+    private void handleApiSuccess(List<FlightModel> flightModels, View view) {
+        ProgressBar loadingProgressBar = view.findViewById(R.id.loadingProgressBar);
+        LottieAnimationView animationView = view.findViewById(R.id.animation_view);
+        TextView noFlightsText = view.findViewById(R.id.no_flights_text);
+        Button backButton = view.findViewById(R.id.backButton);
+        RecyclerView recyclerView = view.findViewById(R.id.flightsRecyclerView);
+
+        if (!flightModels.isEmpty()) {
+            FlightsRecyclerViewAdapter adapter = new FlightsRecyclerViewAdapter(getContext(), (ArrayList<FlightModel>) flightModels, FlightsFragment.this);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            loadingProgressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            loadingProgressBar.setVisibility(View.GONE);
+            animationView.setVisibility(View.VISIBLE);
+            noFlightsText.setVisibility(View.VISIBLE);
+            backButton.setVisibility(View.VISIBLE);
         }
-
     }
 
 
-    //OnClick method when a Card is clicked
+    /**
+     * On click method when a flight is clicked.
+     * Adds data into a bundle and passes it to the trips fragment with the navController.
+     */
     @Override
     public void onItemClicked(FlightModel model) {
         //Direct user to flight_details page

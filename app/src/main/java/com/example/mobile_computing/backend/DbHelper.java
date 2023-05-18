@@ -12,17 +12,27 @@ import com.example.mobile_computing.model.TripModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * A helper class for managing the database used for storing favorite trips.
+ */
 public class DbHelper extends SQLiteOpenHelper {
 // If you change the database schema, you must increment the database
 
     private static final String DATABASE_NAME = "favourites.db";
     private static final int DATABASE_VERSION = 1;
-
+    /**
+     * Constructs a new DbHelper object.
+     *
+     * @param context The context.
+     */
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
+    /**
+     * Called when the database is created.
+     *
+     * @param db The SQLiteDatabase object.
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE favouritesTable ("
@@ -30,11 +40,20 @@ public class DbHelper extends SQLiteOpenHelper {
                 + "flightData TEXT,"
                 + "hotelData TEXT)");
     }
-
+/**
+ * Called when the database needs to be upgraded.
+ */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Implement the code to upgrade the database here
     }
+    /**
+     * Checks if a trip is a favorite.
+     *
+     * @param type The flight data of the trip.
+     * @param data The hotel data of the trip.
+     * @return true if the trip is a favorite, false otherwise.
+     */
     public boolean isFavorite(String type, String data) {
         SQLiteDatabase db = getReadableDatabase();
 
@@ -52,6 +71,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return isFavorite;
     }
+    /**
+     * Adds a trip to the favorites.
+     *
+     * @param flightData The flight data of the trip.
+     * @param hotelData  The hotel data of the trip.
+     */
     public void addFavorite(String flightData, String hotelData) {
         Log.i("added to DB", flightData);
         Log.i("added to DB", hotelData);
@@ -66,7 +91,12 @@ public class DbHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
-
+    /**
+     * Removes a trip from the favorites.
+     *
+     * @param flightData The flight data of the trip.
+     * @param hotelData  The hotel data of the trip.
+     */
     public void removeFavorite(String flightData, String hotelData) {
         Log.i("removed from DB", flightData);
         Log.i("removed from DB", hotelData);
@@ -78,6 +108,11 @@ public class DbHelper extends SQLiteOpenHelper {
         db.delete("favouritesTable", selection, selectionArgs);
         db.close();
     }
+    /**
+     * Retrieves all favourite trips.
+     *
+     * @return A list of TripModel objects representing the favourite trips.
+     */
     public List<TripModel> getAllData() {
         SQLiteDatabase db = getReadableDatabase();
 
@@ -99,7 +134,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return data;
     }
-
+    /**
+     * Clears the favourites table.
+     */
     public void clearFavorites() {
         SQLiteDatabase db = getWritableDatabase();
 

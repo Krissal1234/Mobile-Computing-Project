@@ -13,6 +13,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+/**
+ * The repository class responsible for fetching flights data from the API.
+ */
 public class FlightsRestRepository {
     private static FlightsRestRepository instance = null;
     private FlightApi api;
@@ -30,7 +33,15 @@ public class FlightsRestRepository {
         }
         return instance;
     }
-
+    /**
+     * Fetches flights data from the API based on the specified origin, departure date, and return date.
+     * Returns a LiveData object containing the list of FlightModel objects.
+     *
+     * @param origin         The origin location for the flights.
+     * @param departureDate  The departure date for the flights.
+     * @param returnDate     The return date for the flights.
+     * @return A LiveData object containing the list of FlightModel objects.
+     */
     public LiveData<List<FlightModel>> fetchFlights(String origin, String departureDate, String returnDate) {
         final MutableLiveData<List<FlightModel>> flights = new MutableLiveData<>();
         api.getFlights(origin,departureDate,returnDate).enqueue(new Callback<List<FlightModel>>() {
@@ -41,10 +52,8 @@ public class FlightsRestRepository {
                     return;
                 }
                 List<FlightModel> flightList = flights.getValue();
-                String flightListString = flightList != null ? flightList.toString() : "null";
-
                 flights.setValue(response.body());
-//                Log.i("flights", flightListString);
+
             }
 
             @Override

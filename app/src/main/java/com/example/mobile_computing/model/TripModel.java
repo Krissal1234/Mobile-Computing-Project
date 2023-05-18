@@ -1,5 +1,8 @@
 package com.example.mobile_computing.model;
+/**
 
+ Represents a trip model that contains the corresponding flight data and hotel data.
+ */
 public class TripModel {
 
     private String flightData;

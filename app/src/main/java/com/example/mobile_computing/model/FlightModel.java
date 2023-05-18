@@ -10,7 +10,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * The FlightModel class represents a flight with various attributes.
+ * It implements the Parcelable interface to enable passing instances between components.
+ */
 public class FlightModel implements Parcelable {
 
     private String origin;
@@ -26,7 +29,22 @@ public class FlightModel implements Parcelable {
     private String imageUrl;
     private ReturnFlight returnFlight;
 
-
+    /**
+     * Constructs a FlightModel object with the specified attributes.
+     *
+     * @param origin         the origin of the flight
+     * @param destination    the destination of the flight
+     * @param departureDate  the departure date of the flight
+     * @param departureTime  the departure time of the flight
+     * @param arrivalDate    the arrival date of the flight
+     * @param arrivalTime    the arrival time of the flight
+     * @param flightDuration the duration of the departure flight
+     * @param airline        the airline of the flight
+     * @param flightNumber   the flight number
+     * @param price          the price of the flight
+     * @param imageUrl       the URL of the flight's image
+     * @param returnFlight   the return flight (optional)
+     */
     public FlightModel(String origin, String destination, String departureDate, String departureTime, String arrivalDate, String arrivalTime, String flightDuration, String airline, String flightNumber, String price, String imageUrl, ReturnFlight returnFlight) {
         this.origin = origin;
         this.destination = destination;
@@ -41,7 +59,11 @@ public class FlightModel implements Parcelable {
         this.imageUrl = imageUrl;
         this.returnFlight = returnFlight;
     }
-
+    /**
+     * Constructs a FlightModel object from a Parcel object (used for Parcelable implementation).
+     *
+     * @param in the Parcel object containing the FlightModel data
+     */
     protected FlightModel(Parcel in) {
         origin = in.readString();
         destination = in.readString();
@@ -56,7 +78,9 @@ public class FlightModel implements Parcelable {
         imageUrl = in.readString();
         returnFlight = in.readParcelable(ReturnFlight.class.getClassLoader());
     }
-
+    /**
+     * Creator constant for Parcelable implementation.
+     */
     public static final Creator<FlightModel> CREATOR = new Creator<FlightModel>() {
         @Override
         public FlightModel createFromParcel(Parcel in) {
@@ -68,6 +92,7 @@ public class FlightModel implements Parcelable {
             return new FlightModel[size];
         }
     };
+
 
     public String getOrigin() {
         return origin;
@@ -121,7 +146,12 @@ public class FlightModel implements Parcelable {
     public int describeContents() {
         return 0;
     }
+    /**
 
+     Writes the object's data to a Parcel.
+     @param dest The Parcel where the object's data should be written to.
+     @param flags Additional flags about how the object should be written. May be 0 or {@link #PARCELABLE_WRITE_RETURN_VALUE}.
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(origin);

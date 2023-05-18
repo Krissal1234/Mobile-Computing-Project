@@ -31,7 +31,16 @@ public class HotelsRestRepository {
         }
         return instance;
     }
-
+    /**
+     * Fetches hotels data from the API based on the specified check-in date, check-out date
+     * and destination.
+     * Returns a LiveData object containing the list of HotelModel objects.
+     *
+     * @param checkIn      The check-in date for the hotels.
+     * @param checkOut     The check-out date for the hotels.
+     * @param destination  The location of the hotels.
+     * @return A LiveData object containing the list of HotelModel objects.
+     */
     public LiveData<List<HotelModel>> fetchHotels(String checkIn, String checkOut, String destination) {
         final MutableLiveData<List<HotelModel>> hotels = new MutableLiveData<>();
         api.getHotels(checkIn,checkOut,destination).enqueue(new Callback<List<HotelModel>>() {

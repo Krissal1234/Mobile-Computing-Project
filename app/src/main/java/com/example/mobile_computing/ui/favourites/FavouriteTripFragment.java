@@ -55,6 +55,16 @@ public class FavouriteTripFragment extends Fragment {
     private LottieAnimationView animationView;
     private TextView hotelText;
 
+    /**
+     * Initialises the appropriate elements required.
+     * Extracts the flight and hotel data from the bundle.
+     * Initialises the favourite button, based on isFavourite check.
+     * Adds an on click listener that does the appropriate operations based on the click.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Trips");
@@ -70,11 +80,14 @@ public class FavouriteTripFragment extends Fragment {
             hotel = getArguments().getParcelable("hotelModel");
 
             }
+        flightJson = gson.toJson(flight);
+        hotelJson = gson.toJson(hotel);
+
 
 
         instantiateTextViews(view, flight, hotel);
-         flightJson = gson.toJson(flight);
-         hotelJson = gson.toJson(hotel);
+        Log.i("flightJSONFav",flightJson);
+        Log.i("hotelJSONFav",hotelJson);
         if(dbHelper.isFavorite(flightJson,hotelJson)){
             isFavoriteSelected = true;
             favouriteButton.setImageResource(R.drawable.ic_baseline_favorite_24_selected);
@@ -82,35 +95,54 @@ public class FavouriteTripFragment extends Fragment {
         favouriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-//                ImageView favoriteButton = (ImageView) view.findViewById(R.id.favorite_button);
                 if (isFavoriteSelected) {
-                    favouriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24);
-                    isFavoriteSelected = false;
-                    dbHelper.removeFavorite(flightJson,hotelJson);
-                    Toast.makeText(getActivity(),
-                            "Removed Trip from favourites.",
-                            Toast.LENGTH_SHORT).show();
+                    // Remove trip  from favorites
+                    removeFromFavorites();
                 } else {
-                    favouriteButton.setImageResource(R.drawable.ic_baseline_favorite_24_selected);
-                    isFavoriteSelected = true;
-                    Log.i("flightJson",flightJson );
-                    Log.i("hotelJson",hotelJson);
-                    dbHelper.addFavorite(flightJson,hotelJson);
-                    Toast.makeText(getActivity(),
-                            "Added Trip to favourites.",
-                            Toast.LENGTH_SHORT).show();
+                    // Add trip to favorites
+                    addToFavorites();
                 }
-                Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.favourite_button_anim);
-                favouriteButton.startAnimation(animation);
-
+                animateFavouriteButton();
             }
         });
         return view;
     }
 
+    /**
+     * Removes the trip from the favorites and updates the UI accordingly.
+     */
+    private void removeFromFavorites() {
+        favouriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+        isFavoriteSelected = false;
+        dbHelper.removeFavorite(flightJson, hotelJson);
+        Toast.makeText(getActivity(),
+                "Removed Trip from favorites.",
+                Toast.LENGTH_SHORT).show();
+    }
 
+    /**
+     * Adds the trip to the favorites and updates the UI accordingly.
+     */
+    private void addToFavorites() {
+        favouriteButton.setImageResource(R.drawable.ic_baseline_favorite_24_selected);
+        isFavoriteSelected = true;
+        dbHelper.addFavorite(flightJson, hotelJson);
+        Toast.makeText(getActivity(),
+                "Added Trip to favorites.",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Animates the favourite button when clicked.
+     */
+    private void animateFavouriteButton() {
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.favourite_button_anim);
+        favouriteButton.startAnimation(animation);
+    }
+
+    /**
+     * Instantiates the views required for corresponding layout page.
+     */
     private void instantiateTextViews(View view, FlightModel flight, HotelModel hotel) {
         arrivalLocationDeparture = view.findViewById(R.id.arrivalLocation_departure);
         originLocationDeparture = view.findViewById(R.id.originLocation_departure);

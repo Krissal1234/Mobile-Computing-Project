@@ -5,7 +5,16 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.mobile_computing.utils.DateUtils;
+/**
 
+ Represents a return flight model.
+
+ The ReturnFlight class implements the Parcelable interface, allowing it to be passed between components using Intents.
+
+ It contains information about a return flight, including its origin, destination, departure date, departure time,
+
+ arrival date, arrival time, flight duration, airline, flight number, price, and image URL.
+ */
 public class ReturnFlight implements Parcelable  {
     private String origin;
     private String destination;

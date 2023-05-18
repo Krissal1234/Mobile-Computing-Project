@@ -6,7 +6,16 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 import java.util.List;
+/**
 
+ Represents a hotel model.
+
+ The HotelModel class implements the Parcelable interface, allowing it to be passed between components using Intents.
+
+ It contains information about a hotel, including its country, city, hotel name, price per night, address,
+
+ latitude, longitude, and a list of available dates.
+ */
 public class HotelModel implements Parcelable {
 
 

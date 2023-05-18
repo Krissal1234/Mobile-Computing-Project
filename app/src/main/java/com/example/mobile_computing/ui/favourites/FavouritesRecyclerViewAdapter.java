@@ -85,6 +85,12 @@ class FavouritesRecyclerViewAdapter extends RecyclerView.Adapter<FavouritesRecyc
         TextView tvCountry, tvPrice;
         public CardView cardView;
         ImageView favouriteButton;
+        /**
+         * Constructor for MyViewHolder class.
+         * Initializes the views required for the favourites fragment within the item view.
+         *
+         * @param itemView The item view for the RecyclerView.
+         */
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             date = itemView.findViewById(R.id.favourites_date);
