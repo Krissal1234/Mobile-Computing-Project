@@ -14,7 +14,7 @@ public interface FlightApi {
      * The base URL of the Flight API.
      * TODO: Replace "<host's IP here>" with the actual IP address of the host where the API is hosted.
      */
-    String BASE_URL = "http://192.168.1.138:3000/";
+    String BASE_URL = "http://<host's IP here>:3000/";
 
     /**
      * Retrieves a list of flights from the API based on the specified parameters.
